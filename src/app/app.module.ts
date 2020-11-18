@@ -16,6 +16,8 @@ import { LocationFilterComponent } from './components/location-filter/location-f
 import { DetailsCardComponent } from './components/details-card/details-card.component';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     MatCardModule,
     MatInputModule,
     MatAutocompleteModule,
-    MatExpansionModule
+    MatExpansionModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
