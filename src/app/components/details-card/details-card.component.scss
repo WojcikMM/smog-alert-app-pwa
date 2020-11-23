@@ -1,0 +1,18 @@
+@import '~@angular/material/_theming.scss';
+
+@include mat-core();
+
+.air-index-level {
+  &--good {
+    background-color: mat-color($mat-green);
+  }
+
+  &--warning {
+    background-color: mat-color($mat-blue);
+  }
+
+  &--bad {
+    background-color: mat-color($mat-red);
+  }
+
+}

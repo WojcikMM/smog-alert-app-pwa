@@ -5,5 +5,18 @@
 <h1>Smog Alert App</h1>
 <h2>Make you knowledge about the air condition.</h2>
 
-<app-location-filter></app-location-filter>
-<app-details-card></app-details-card>
+<app-location-filter (locationSelectedEvent)="onLocationChanged($event)"></app-location-filter>
+
+<ng-container *ngIf="selectedLocationAirIndex$ | async as airIndex">
+
+  <app-details-card *ngIf="airIndex?.stIndexLevel?.id > 0; else noData"
+                    [airIndex]="airIndex"
+                    [selectedLocation]="selectedLocation$ | async">
+  </app-details-card>
+
+  <ng-template #noData>
+    <div>No data for this location</div>
+  </ng-template>
+
+</ng-container>
+

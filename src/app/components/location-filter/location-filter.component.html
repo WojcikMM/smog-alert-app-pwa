@@ -3,7 +3,8 @@
 
   <input matInput placeholder="Pick one" [formControl]="searchControl" [matAutocomplete]="autocompleteRef"  />
   <mat-icon matSuffix>arrow_drop_down</mat-icon>
-  <mat-autocomplete autoActiveFirstOption #autocompleteRef="matAutocomplete" (optionSelected)="onOptionSelected($event.option.id)">
+  <mat-autocomplete autoActiveFirstOption #autocompleteRef="matAutocomplete" (optionSelected)="onOptionSelected($event.option.value)">
+    <mat-option *ngIf="!!searchControl.value">-</mat-option>
     <mat-option *ngFor="let location of locations" [value]="location.stationName">{{location.stationName}}</mat-option>
   </mat-autocomplete>
 </mat-form-field>

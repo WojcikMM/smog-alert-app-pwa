@@ -44,3 +44,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+/backend/SmogAlertAPI/obj
+/backend/.vs/SmogAlertAPI/v16/.suo
+/backend/bin/Debug/netcoreapp3.1
+/backend/obj
+/backend/SmogAlertAPI.csproj.user

@@ -1,10 +1,9 @@
 import {Component} from '@angular/core';
-import {Observable, of} from 'rxjs';
-
-export interface PointLocation {
-  id: string;
-  name: string;
-}
+import {Observable, Subject} from 'rxjs';
+import {filter, switchMap} from 'rxjs/operators';
+import {AirConditionClientService} from './services/air-condition-client.service';
+import {AirIndexDto} from './models/dtos/air-index.dto';
+import {StationDto} from './models/dtos/station.dto';
 
 @Component({
   selector: 'app-root',
@@ -12,22 +11,22 @@ export interface PointLocation {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  locations$: Observable<PointLocation[]>;
 
-  constructor() {
-    this.locations$ = of([
-      {
-        id: 'sample1',
-        name: 'City 1'
-      } as PointLocation,
-      {
-        id: 'sample2',
-        name: 'City 2'
-      } as PointLocation,
-      {
-        id: 'sample3',
-        name: 'City 3'
-      } as PointLocation,
-    ]);
+  selectedLocationAirIndex$: Observable<AirIndexDto>;
+  selectedLocation$: Observable<StationDto>;
+
+  private readonly selectedLocation = new Subject<StationDto>();
+
+  constructor(httpClientService: AirConditionClientService) {
+    this.selectedLocation$ = this.selectedLocation.asObservable();
+    this.selectedLocationAirIndex$ = this.selectedLocation$
+      .pipe(
+        filter(station => !!station),
+        switchMap((station) => httpClientService.getAirConditionData$(station.id))
+      );
+  }
+
+  onLocationChanged(locationId: StationDto): void {
+    this.selectedLocation.next(locationId);
   }
 }

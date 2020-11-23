@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://api.gios.gov.pl/pjp-api/rest'
+  apiUrl: 'https://api.allorigins.win/get?url=http://api.gios.gov.pl/pjp-api/rest'
 };
 
 /*

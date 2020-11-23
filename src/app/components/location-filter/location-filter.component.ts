@@ -15,28 +15,32 @@ export class LocationFilterComponent {
   searchControl: FormControl;
 
   @Output()
-  readonly locationSelectedEvent: EventEmitter<number> = new EventEmitter<number>();
+  readonly locationSelectedEvent: EventEmitter<StationDto> = new EventEmitter<StationDto>();
 
   constructor(private airConditionClientService: AirConditionClientService) {
     this.searchControl = new FormControl('');
-    airConditionClientService.stations$().subscribe(result => {
-      this.allLocations = result;
-      this.locations = result;
-    });
+    airConditionClientService.stations$()
+      .subscribe(result => {
+        this.allLocations = result;
+        this.locations = result;
+      });
 
     this.searchControl.valueChanges.subscribe(value => {
-      const lowerValue = value.toLowerCase();
+      const lowerValue = value?.toLowerCase() || '';
       console.log(lowerValue);
       this.locations = !value ?
         this.allLocations.slice() :
-        this.allLocations.filter(location => location.stationName.toLowerCase().indexOf(lowerValue) > -1);
+        [...this.allLocations.filter(location => location.stationName.toLowerCase().indexOf(lowerValue) > -1)];
     });
   }
 
   onOptionSelected(stationName: string): void {
     const selectedStation = this.locations.find(x => x.stationName === stationName);
-    if (selectedStation) {
-      this.locationSelectedEvent.emit(selectedStation.id);
-    }
+    this.locationSelectedEvent.emit(selectedStation);
+  }
+
+  onResetClicked(): void {
+    this.searchControl.setValue('');
+    this.locationSelectedEvent.emit();
   }
 }
