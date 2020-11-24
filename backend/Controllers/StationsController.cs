@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace SmogAlertAPI.Controllers
 {
   [ApiController]
-  [Route("[controller]")]
+  [Route("api/[controller]")]
   public class StationsController : ControllerBase
   {
 

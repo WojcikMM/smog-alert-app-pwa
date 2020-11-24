@@ -23,7 +23,7 @@ namespace SmogAlertAPI.Services.Cache
 
     public IEnumerable<ExternalAirIndexDto> GetAllRecords(bool failIfNotExists = false)
     {
-      return GetAllRectordsDictionary(failIfNotExists).Values;
+      return GetAllRectordsDictionary(failIfNotExists)?.Values ?? new List<ExternalAirIndexDto>();
     }
 
     public IDictionary<int, ExternalAirIndexDto> GetAllRectordsDictionary(bool failIfNotExists = false)

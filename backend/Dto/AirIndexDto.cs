@@ -31,7 +31,7 @@ namespace SmogAlertAPI.Dto
 
   public class AirIndexType
   {
-    public DateTime IndexDate { get; set; }
+    public DateTime? IndexDate { get; set; }
     public AirIndexValue IndexValue { get; set; }
   }
 }

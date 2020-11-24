@@ -49,3 +49,5 @@ Thumbs.db
 /backend/bin/Debug/netcoreapp3.1
 /backend/obj
 /backend/SmogAlertAPI.csproj.user
+/backend/.vs/SmogAlertAPI/DesignTimeBuild
+/backend/bin/Release/netcoreapp3.1
