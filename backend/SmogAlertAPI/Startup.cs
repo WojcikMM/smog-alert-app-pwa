@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SmogAlertAPI.Dto;
 using SmogAlertAPI.Services;
 using SmogAlertAPI.Services.Cache;
 using SmogAlertAPI.Services.Jobs;
