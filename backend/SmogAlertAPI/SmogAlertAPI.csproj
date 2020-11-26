@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>3cceb231-0c7b-4ff6-9e70-513339a46fa7</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileTag>wojcikmm.azurecr.io/smog-alert-api</DockerfileTag>
     <DockerfileContext>.</DockerfileContext>
   </PropertyGroup>
 

@@ -1,11 +1,11 @@
-# Default values for backend.
+# Default values for smog-alert-api.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-fullnameOverride: backend
+fullnameOverride: smog-alert-api
 replicaCount: 1
 image:
-  repository: backend
-  tag: stable
+  repository: wojcikmm.azurecr.io/smog-alert-api
+  tag: latest
   pullPolicy: IfNotPresent
 imagePullSecrets: []
   # Optionally specify an array of imagePullSecrets.
