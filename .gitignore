@@ -55,3 +55,4 @@ Thumbs.db
 /backend/SmogAlertAPI/bin
 /backend/SmogAlertAPI.Tests/bin/Debug/netcoreapp3.1
 /backend/SmogAlertAPI.Tests/obj
+/backend/SmogAlertAPI/charts/smog-alert-api-*.tgz
