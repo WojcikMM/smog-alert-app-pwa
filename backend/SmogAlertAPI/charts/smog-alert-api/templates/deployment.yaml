@@ -53,6 +53,8 @@ spec:
                   key: {{ $key }}
             {{- end }}
             {{- end }}
+            - name: Deployment__BasePath
+              value: {{.Values.basePath}}
           resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.imagePullSecrets }}

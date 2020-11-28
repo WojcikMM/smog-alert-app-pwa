@@ -9,6 +9,7 @@ using SmogAlertAPI.Services.Jobs;
 using AutoMapper;
 using System.Reflection;
 using SmogAlertAPI.Dto.External;
+using Microsoft.Extensions.Logging;
 
 namespace SmogAlertAPI
 {
@@ -46,11 +47,20 @@ namespace SmogAlertAPI
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
+      var logger = LoggerFactory.Create(cfg => cfg.AddConsole()).CreateLogger("Startup");
+      //TODO: ADD Deployment.BasePath
+      var basePath = Configuration.GetSection("Deployment")?.GetValue("BasePath", "/")?.TrimStart('/') ?? string.Empty;
+      logger.LogInformation($"Base path setup: /{basePath} .");
+      if (!string.IsNullOrWhiteSpace(basePath))
+      {
+        app.UsePathBase(new Microsoft.AspNetCore.Http.PathString($"/{basePath}"));
+      }
+
       app.UseSwagger();
 
       app.UseSwaggerUI(c =>
       {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Smog Alert API V1");
+        c.SwaggerEndpoint("swagger/v1/swagger.json", "Smog Alert API V1");
         c.RoutePrefix = string.Empty;
       });
 
