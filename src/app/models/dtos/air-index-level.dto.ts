@@ -1,4 +1,6 @@
+import {AirIndexValueEnum} from './air-index-value.enum';
+
 export interface AirIndexLevelDto {
-  id: number;
-  indexLevelName: string;
+  indexDate?: Date;
+  indexValue: AirIndexValueEnum;
 }

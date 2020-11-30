@@ -4,36 +4,35 @@ import {StationDto} from '../models/dtos/station.dto';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import {AirIndexDto} from '../models/dtos/air-index.dto';
-import {map, shareReplay} from 'rxjs/operators';
+import {mergeMap, shareReplay} from 'rxjs/operators';
+import {GeolocationService} from '@ng-web-apis/geolocation';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AirConditionClientService {
 
-  constructor(private readonly http: HttpClient) {
+  constructor(private readonly http: HttpClient,
+              private readonly geolocation$: GeolocationService) {
   }
 
   stations$(): Observable<StationDto[]> {
-    return this.http.get<any>(`${environment.apiUrl}/station/findAll`)
-      .pipe(
-        map(res => this._getContent<StationDto[]>(res)),
-        shareReplay(10)
-      );
+    return this.http.get<StationDto[]>(`${environment.apiUrl}/stations`)
+      .pipe(shareReplay(10));
   }
 
   getAirConditionData$(stationId: number): Observable<AirIndexDto> {
-    return this.http.get(`${environment.apiUrl}/aqindex/getIndex/${stationId}`)
-      .pipe(
-        map(res => this._getContent<AirIndexDto>(res)),
-        shareReplay(3, 30)
-      );
+    return this.http.get<AirIndexDto>(`${environment.apiUrl}/AirIndexes/${stationId}`)
+      .pipe(shareReplay(3, 30));
   }
 
-  private _getContent<T>(res: any): T {
-    if (!!res?.contents) {
-      return JSON.parse(res.contents) as T;
-    }
-    return {} as T;
+  getNearestStationByPosition$(longitude: number, latitude: number): Observable<StationDto> {
+    return this.http.get<StationDto>(`${environment.apiUrl}/stations/position/${latitude}/${longitude}`);
+  }
+
+  getNearestStation$(): Observable<StationDto> {
+    return this.geolocation$.pipe(
+      mergeMap(({coords}) => this.getNearestStationByPosition$(coords.longitude, coords.latitude))
+    );
   }
 }

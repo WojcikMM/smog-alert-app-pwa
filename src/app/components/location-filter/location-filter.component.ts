@@ -25,17 +25,23 @@ export class LocationFilterComponent {
         this.locations = result;
       });
 
+    airConditionClientService.getNearestStation$().subscribe((station) => {
+      console.log('sss');
+      this.searchControl.setValue(station.name);
+      this.onOptionSelected(station.name);
+    });
+
     this.searchControl.valueChanges.subscribe(value => {
       const lowerValue = value?.toLowerCase() || '';
       console.log(lowerValue);
       this.locations = !value ?
         this.allLocations.slice() :
-        [...this.allLocations.filter(location => location.stationName.toLowerCase().indexOf(lowerValue) > -1)];
+        [...this.allLocations.filter(location => location.name.toLowerCase().indexOf(lowerValue) > -1)];
     });
   }
 
   onOptionSelected(stationName: string): void {
-    const selectedStation = this.locations.find(x => x.stationName === stationName);
+    const selectedStation = this.locations.find(x => x.name === stationName);
     this.locationSelectedEvent.emit(selectedStation);
   }
 

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api.allorigins.win/get?url=http://api.gios.gov.pl/pjp-api/rest'
+  apiUrl: 'http://localhost/smog-alert/api'
 };
 
 /*

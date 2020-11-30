@@ -21,10 +21,22 @@ namespace SmogAlertAPI
     }
 
     public IConfiguration Configuration { get; }
+    private const string _corsPolicyName = "CorsPolicy";
 
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+
+      services.AddCors(options =>
+      {
+        options.AddPolicy(_corsPolicyName, builder =>
+        {
+          builder.AllowAnyOrigin();
+          builder.AllowAnyMethod();
+          builder.AllowAnyHeader();
+        });
+      });
+
       services.AddControllers();
 
       services.AddAutoMapper(Assembly.GetExecutingAssembly());
@@ -72,6 +84,8 @@ namespace SmogAlertAPI
       app.UseHttpsRedirection();
 
       app.UseRouting();
+
+      app.UseCors(_corsPolicyName);
 
       app.UseAuthorization();
 

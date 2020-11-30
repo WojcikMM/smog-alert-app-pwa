@@ -9,7 +9,7 @@
 
 <ng-container *ngIf="selectedLocationAirIndex$ | async as airIndex">
 
-  <app-details-card *ngIf="airIndex?.stIndexLevel?.id > 0; else noData"
+  <app-details-card *ngIf="airIndex.summary.indexValue > 0; else noData"
                     [airIndex]="airIndex"
                     [selectedLocation]="selectedLocation$ | async">
   </app-details-card>

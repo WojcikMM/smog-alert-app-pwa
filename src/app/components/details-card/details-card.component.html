@@ -1,17 +1,17 @@
 <mat-card>
-  <mat-card-title>{{selectedLocation?.city?.name}}</mat-card-title>
+  <mat-card-title>{{selectedLocation?.cityName}}</mat-card-title>
   <mat-card-subtitle>{{selectedLocation?.addressStreet}}</mat-card-subtitle>
-  <mat-card-subtitle>{{selectedLocation?.city?.commune?.provinceName}}</mat-card-subtitle>
+  <mat-card-subtitle>{{selectedLocation?.provinceName}}</mat-card-subtitle>
 
   <mat-card-content>
     <mat-expansion-panel *ngIf="airIndex"
                          class="air-index-level"
-                         [class.air-index-level--good]="airIndex.stIndexLevel.id >= 0 && airIndex.stIndexLevel.id < 2"
-                         [class.air-index-level--warning]="airIndex.stIndexLevel.id >= 2 && airIndex.stIndexLevel.id <= 5"
-                         [class.air-index-level--bad]="airIndex.stIndexLevel.id >= 5">
+                         [class.air-index-level--good]="airIndex.summary.indexValue >= 0 && airIndex.summary.indexValue < 2"
+                         [class.air-index-level--warning]="airIndex.summary.indexValue >= 2 && airIndex.summary.indexValue <= 5"
+                         [class.air-index-level--bad]="airIndex.summary.indexValue >= 5">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Air condition: {{airIndex?.stIndexLevel?.id | airConditionLevel }}
+          Air condition: {{airIndex.summary.indexValue | airConditionLevel }}
         </mat-panel-title>
         <mat-panel-description>
           Click for details

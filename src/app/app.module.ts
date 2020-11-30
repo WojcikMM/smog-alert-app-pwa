@@ -19,6 +19,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import { AirConditionLevelPipe } from './pipes/air-condition-level.pipe';
+import { POSITION_OPTIONS } from '@ng-web-apis/geolocation';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,12 @@ import { AirConditionLevelPipe } from './pipes/air-condition-level.pipe';
     MatExpansionModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],
-  providers: [],
+  providers: [
+    {
+      provide: POSITION_OPTIONS,
+      useValue: {enableHighAccuracy: true, timeout: 3000, maximumAge: 1000},
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

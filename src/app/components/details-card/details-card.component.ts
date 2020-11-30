@@ -1,23 +1,19 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {AirIndexDto} from '../../models/dtos/air-index.dto';
 import {StationDto} from '../../models/dtos/station.dto';
 
 @Component({
   selector: 'app-details-card',
   templateUrl: './details-card.component.html',
-  styleUrls: ['./details-card.component.scss']
+  styleUrls: ['./details-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DetailsCardComponent implements OnInit {
+export class DetailsCardComponent {
 
   @Input()
-  airIndex!: AirIndexDto | null;
+  airIndex?: AirIndexDto | null;
 
   @Input()
-  selectedLocation!: StationDto | null;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  selectedLocation?: StationDto | null;
 
 }
