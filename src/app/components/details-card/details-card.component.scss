@@ -2,17 +2,36 @@
 
 @include mat-core();
 
+@mixin alert-panel-header($palette-color) {
+  &.mat-expansion-panel {
+    mat-expansion-panel-header.mat-expansion-panel-header {
+      background-color: mat-color($palette-color, 500, 0.8);
+    }
+
+    &:hover,
+    &:focus {
+      mat-expansion-panel-header.mat-expansion-panel-header:not(.mat-expanded):not([aria-disabled=true]) {
+        background-color: mat-color($palette-color, 500, 0.9) !important;
+      }
+    }
+  }
+}
+
+
 .air-index-level {
   &--good {
-    background-color: mat-color($mat-green);
+    @include alert-panel-header($mat-green);
   }
 
   &--warning {
-    background-color: mat-color($mat-blue);
+    @include alert-panel-header($mat-yellow);
   }
 
   &--bad {
-    background-color: mat-color($mat-red);
+    @include alert-panel-header($mat-red);
   }
+}
 
+.air-index-value-table {
+  width: 100%;
 }

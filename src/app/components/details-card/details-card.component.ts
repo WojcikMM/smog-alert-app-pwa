@@ -16,4 +16,6 @@ export class DetailsCardComponent {
   @Input()
   selectedLocation?: StationDto | null;
 
+  displayedColumns: string[] = ['indexName', 'indexDate', 'indexValue'];
+
 }

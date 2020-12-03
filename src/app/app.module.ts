@@ -1,9 +1,10 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
+import {HttpClientModule} from '@angular/common/http';
+import {ReactiveFormsModule} from '@angular/forms';
+import {ServiceWorkerModule} from '@angular/service-worker';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -12,14 +13,18 @@ import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatTableModule} from '@angular/material/table';
+
+import {POSITION_OPTIONS} from '@ng-web-apis/geolocation';
+import {environment} from '../environments/environment';
+
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app-routing.module';
 import {LocationFilterComponent} from './components/location-filter/location-filter.component';
 import {DetailsCardComponent} from './components/details-card/details-card.component';
-import {HttpClientModule} from '@angular/common/http';
-import {ReactiveFormsModule} from '@angular/forms';
-import {ServiceWorkerModule} from '@angular/service-worker';
-import {environment} from '../environments/environment';
-import { AirConditionLevelPipe } from './pipes/air-condition-level.pipe';
-import { POSITION_OPTIONS } from '@ng-web-apis/geolocation';
+import {AirConditionLevelPipe} from './pipes/air-condition-level.pipe';
+
 
 @NgModule({
   declarations: [
@@ -43,6 +48,8 @@ import { POSITION_OPTIONS } from '@ng-web-apis/geolocation';
     MatButtonModule,
     MatAutocompleteModule,
     MatExpansionModule,
+    MatProgressBarModule,
+    MatTableModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [

@@ -6,9 +6,9 @@
   <mat-card-content>
     <mat-expansion-panel *ngIf="airIndex"
                          class="air-index-level"
-                         [class.air-index-level--good]="airIndex.summary.indexValue >= 0 && airIndex.summary.indexValue < 2"
-                         [class.air-index-level--warning]="airIndex.summary.indexValue >= 2 && airIndex.summary.indexValue <= 5"
-                         [class.air-index-level--bad]="airIndex.summary.indexValue >= 5">
+                         [class.air-index-level--bad]="airIndex.summary.indexValue >= 1 && airIndex.summary.indexValue < 3"
+                         [class.air-index-level--warning]="airIndex.summary.indexValue >= 3 && airIndex.summary.indexValue <= 5"
+                         [class.air-index-level--good]="airIndex.summary.indexValue >= 5">
       <mat-expansion-panel-header>
         <mat-panel-title>
           Air condition: {{airIndex.summary.indexValue | airConditionLevel }}
@@ -18,7 +18,24 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
       <div>
-        Here will be detailed info
+        <table mat-table class="mat-elevation-z8 air-index-value-table">
+          <ng-container [matColumnDef]="displayedColumns[0]">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let element">{{element.name}}</td>
+          </ng-container>
+          <ng-container [matColumnDef]="displayedColumns[1]">
+            <th mat-header-cell *matHeaderCellDef>Value Date</th>
+            <td mat-cell *matCellDef="let element">{{element.indexDate}}</td>
+          </ng-container>
+          <ng-container [matColumnDef]="displayedColumns[2]">
+            <th mat-header-cell *matHeaderCellDef>Value</th>
+            <td mat-cell *matCellDef="let element">
+              <mat-progress-bar [color]="element.color" mode="determinate" value="element.percentage"></mat-progress-bar>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
       </div>
     </mat-expansion-panel>
   </mat-card-content>
