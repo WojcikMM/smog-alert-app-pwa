@@ -23,7 +23,7 @@ export class AirConditionLevelPipe implements PipeTransform {
       case AirIndexValueEnum.VERY_GOOD:
         return 'Very good';
       default:
-        return 'Unknown';
+        return '-';
     }
   }
 

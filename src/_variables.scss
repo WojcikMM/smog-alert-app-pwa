@@ -1,0 +1,9 @@
+@import '~@angular/material/_theming.scss';
+
+@function air-index-panel-color($palette-color) {
+  @return mat-color($palette-color, 500, 0.8);
+}
+
+$color-success: air-index-panel-color($mat-green);
+$color-warning: air-index-panel-color($mat-yellow);
+$color-danger: air-index-panel-color($mat-red);

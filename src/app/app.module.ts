@@ -14,6 +14,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTableModule} from '@angular/material/table';
 
 import {POSITION_OPTIONS} from '@ng-web-apis/geolocation';
@@ -24,6 +25,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {LocationFilterComponent} from './components/location-filter/location-filter.component';
 import {DetailsCardComponent} from './components/details-card/details-card.component';
 import {AirConditionLevelPipe} from './pipes/air-condition-level.pipe';
+import { AirIndexValueTextDescriptionComponent } from './components/air-index-value-text-description/air-index-value-text-description.component';
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import {AirConditionLevelPipe} from './pipes/air-condition-level.pipe';
     AppComponent,
     LocationFilterComponent,
     DetailsCardComponent,
-    AirConditionLevelPipe
+    AirConditionLevelPipe,
+    AirIndexValueTextDescriptionComponent
   ],
   imports: [
     BrowserModule,
@@ -45,11 +48,11 @@ import {AirConditionLevelPipe} from './pipes/air-condition-level.pipe';
     MatSelectModule,
     MatCardModule,
     MatInputModule,
-    MatButtonModule,
     MatAutocompleteModule,
     MatExpansionModule,
     MatProgressBarModule,
     MatTableModule,
+    MatProgressSpinnerModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [

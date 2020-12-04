@@ -1,0 +1,15 @@
+@import 'src/variables';
+
+.air-index-value-text-description {
+  &--good {
+    color: $color-success;
+  }
+
+  &-warning {
+    color: $color-warning;
+  }
+
+  &--bad {
+    color: $color-danger;
+  }
+}
