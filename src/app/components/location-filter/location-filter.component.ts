@@ -26,14 +26,12 @@ export class LocationFilterComponent {
       });
 
     airConditionClientService.getNearestStation$().subscribe((station) => {
-      console.log('sss');
       this.searchControl.setValue(station.name);
       this.onOptionSelected(station.name);
     });
 
     this.searchControl.valueChanges.subscribe(value => {
       const lowerValue = value?.toLowerCase() || '';
-      console.log(lowerValue);
       this.locations = !value ?
         this.allLocations.slice() :
         [...this.allLocations.filter(location => location.name.toLowerCase().indexOf(lowerValue) > -1)];
