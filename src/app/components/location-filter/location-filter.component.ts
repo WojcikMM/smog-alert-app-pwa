@@ -49,4 +49,8 @@ export class LocationFilterComponent {
     this.searchControl.setValue('');
     this.locationSelectedEvent.emit();
   }
+
+  onDropdownIconClicked(): void {
+    this.searchControl.reset();
+  }
 }

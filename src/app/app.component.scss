@@ -1,0 +1,12 @@
+footer {
+  position: absolute;
+  bottom: 0;
+  height: 30px;
+}
+
+:host {
+  display: block;
+  position: relative;
+  padding-bottom: 58px;
+  min-height: calc(100vh - 58px);
+}

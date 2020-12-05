@@ -4,7 +4,7 @@ import {StationDto} from '../models/dtos/station.dto';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import {AirIndexDto} from '../models/dtos/air-index.dto';
-import {mergeMap, shareReplay} from 'rxjs/operators';
+import {distinctUntilChanged, map, mergeMap, shareReplay} from 'rxjs/operators';
 import {GeolocationService} from '@ng-web-apis/geolocation';
 
 @Injectable({
@@ -32,7 +32,11 @@ export class AirConditionClientService {
 
   getNearestStation$(): Observable<StationDto> {
     return this.geolocation$.pipe(
-      mergeMap(({coords}) => this.getNearestStationByPosition$(coords.longitude, coords.latitude))
+      map(({coords}) => coords),
+      distinctUntilChanged((prev: Coordinates, next: Coordinates) => {
+        return prev.latitude === next.latitude && prev.altitude === next.altitude;
+      }),
+      mergeMap(coords => this.getNearestStationByPosition$(coords.longitude, coords.latitude))
     );
   }
 }

@@ -3,21 +3,22 @@
 </mat-toolbar>
 
 <h2>Breathe clean air.</h2>
-<h3>Here you can check air quality at your nearest locations.</h3>
+<h3>Here you can check air quality at your nearest location.</h3>
 
 <app-location-filter (locationSelectedEvent)="onLocationChanged($event)"></app-location-filter>
 
 <ng-container *ngIf="selectedLocationAirIndex$ | async as airIndex">
+  <ng-container *ngIf="selectedLocation$ | async as selectedLocation">
 
-  <app-details-card *ngIf="airIndex.summary.indexValue > 0; else noData"
-                    [airIndex]="airIndex"
-                    [selectedLocation]="selectedLocation$ | async">
-  </app-details-card>
+    <app-details-card *ngIf="airIndex.summary.indexValue > 0; else noData"
+                      [airIndex]="airIndex"
+                      [selectedLocation]="selectedLocation">
+    </app-details-card>
 
-  <ng-template #noData>
-    <div>No data for this location</div>
-  </ng-template>
-
+    <ng-template #noData>
+      <div>No data for this location</div>
+    </ng-template>
+  </ng-container>
 </ng-container>
 
 <footer class="footer">© 2020 Copyright: <a href="https://www.github.com/wojcikmm">WojcikMM</a></footer>
