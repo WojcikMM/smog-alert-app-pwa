@@ -1,11 +1,11 @@
-@import 'src/variables';
+@import '~src/variables';
 
 .air-index-value-text-description {
   &--good {
     color: $color-success;
   }
 
-  &-warning {
+  &--warning {
     color: $color-warning;
   }
 

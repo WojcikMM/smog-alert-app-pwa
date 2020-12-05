@@ -1,0 +1,41 @@
+@import '~src/variables';
+
+@mixin alert-panel-header($status-color) {
+  &.mat-expansion-panel {
+    mat-expansion-panel-header.mat-expansion-panel-header {
+      background-color: $status-color;
+    }
+
+    &:hover,
+    &:focus {
+      mat-expansion-panel-header.mat-expansion-panel-header:not(.mat-expanded):not([aria-disabled=true]) {
+        background-color: $status-color !important;
+      }
+    }
+  }
+}
+
+
+.air-index-level {
+  &--good {
+    @include alert-panel-header($color-success);
+  }
+
+  &--warning {
+    @include alert-panel-header($color-warning);
+  }
+
+  &--bad {
+    @include alert-panel-header($color-danger);
+  }
+
+  ::ng-deep.mat-expansion-panel-body {
+    padding: 5px 10px;
+  }
+
+
+}
+
+.air-index-value-table {
+  width: 100%;
+}

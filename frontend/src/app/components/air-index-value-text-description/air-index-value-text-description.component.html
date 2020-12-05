@@ -1,6 +1,6 @@
 <span class="air-index-value-text-description"
       [class.air-index-value-text-description--bad]="indexValue >= 1 && indexValue < 3"
-      [class.air-index-value-text-description--wrong]="indexValue >= 3 && indexValue < 5"
+      [class.air-index-value-text-description--warning]="indexValue >= 3 && indexValue < 5"
       [class.air-index-value-text-description--good]="indexValue >= 5">
     {{indexValue | airConditionLevel}}
 </span>

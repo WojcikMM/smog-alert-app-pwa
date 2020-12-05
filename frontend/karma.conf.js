@@ -3,8 +3,8 @@
 
 module.exports = function (config) {
   config.set({
-    basePath: '',
-    frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    basePath: '..',
+    frameworks: ['jasmine', '@angular-devkit/nginx-angular'],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
