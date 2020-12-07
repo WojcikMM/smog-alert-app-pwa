@@ -24,12 +24,10 @@ deployment:
 probes:
   enabled: false
 
-basePath: /smog-alert
-
 ingress:
   enabled: true
   annotations: {}
-  path: /smog-alert
+  path: /smog-alert-api
   pathType: Prefix
   hosts:
     - localhost
@@ -39,7 +37,7 @@ ingress:
     #     - chart-example.local
 secrets:
   Deployment:
-    BasePath: /smog-alert
+    BasePath: /smog-alert-api
   RefreshCachePeriod:
     Stations: "600"
     AirIndexes: "120"

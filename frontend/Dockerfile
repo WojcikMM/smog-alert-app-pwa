@@ -26,3 +26,7 @@ RUN rm -rf /usr/share/nginx/html/*
 COPY --from=builder /app/dist /usr/share/nginx/html
 
 CMD ["nginx", "-g", "daemon off;"]
+
+COPY nginx/docker-entrypoint.sh /app/docker-entrypoint.sh
+
+ENTRYPOINT /app/docker-entrypoint.sh
