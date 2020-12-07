@@ -3,7 +3,7 @@
 This app is created for inform about nearest air quality.  
 All data in this app are imported from [powietrze.gios.gov.pl](https://www.powietrze.gios.gov.pl).
 
-All code in this app are in [MIT](LICENCE) licence.
+All code in this app are in [MIT](LICENSE) licence.
 
 
 ## Frontend
