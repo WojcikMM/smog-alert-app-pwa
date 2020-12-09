@@ -10,7 +10,8 @@ RUN npm ci
 COPY . .
 
 ## Build the angular app in production mode and store the artifacts in dist folder
-RUN $(npm bin)/ng build --prod --output-path=dist
+#RUN $(npm bin)/ng build --prod --output-path=dist
+COPY dist dist
 
 
 ### STAGE 2: Setup ###
@@ -29,4 +30,6 @@ CMD ["nginx", "-g", "daemon off;"]
 
 COPY nginx/docker-entrypoint.sh /app/docker-entrypoint.sh
 
-ENTRYPOINT /app/docker-entrypoint.sh
+RUN dos2unix /app/docker-entrypoint.sh
+
+ENTRYPOINT sh /app/docker-entrypoint.sh
