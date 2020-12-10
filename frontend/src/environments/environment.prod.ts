@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost/smog-alert/api'
+  apiUrl: 'http://localhost/smog-alert-api/api'
 };

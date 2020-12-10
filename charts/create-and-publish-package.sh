@@ -47,8 +47,12 @@ cp ./"$packageTarName"  "$PRIVATE_HELM_REPO_PATH/$chartName/$packageTarName"
 # Publish changes to private helm repo
 helm repo index "$PRIVATE_HELM_REPO_PATH"
 
+git -C "$PRIVATE_HELM_REPO_PATH" add .
 git -C "$PRIVATE_HELM_REPO_PATH" status
 git -C "$PRIVATE_HELM_REPO_PATH" commit -a -m "Update helm repo with $chartName"
 git -C "$PRIVATE_HELM_REPO_PATH" push
 
-read
+rm ./"$packageTarName"
+
+echo "DONE. Click any key to continue ..."
+read -r

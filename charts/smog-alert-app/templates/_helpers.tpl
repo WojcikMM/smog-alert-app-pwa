@@ -40,6 +40,10 @@ helm.sh/chart: {{ include "smog-alert-app.chart" . }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
+app: {{ template "smog-alert-app.name" . }}
+chart: {{ template "smog-alert-app.chart" . }}
+release: {{ .Release.Name }}
+heritage: {{ .Release.Service }}
 {{- end }}
 
 {{/*
@@ -48,15 +52,4 @@ Selector labels
 {{- define "smog-alert-app.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "smog-alert-app.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
-{{- end }}
-
-{{/*
-Create the name of the service account to use
-*/}}
-{{- define "smog-alert-app.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "smog-alert-app.fullname" .) .Values.serviceAccount.name }}
-{{- else }}
-{{- default "default" .Values.serviceAccount.name }}
-{{- end }}
 {{- end }}
