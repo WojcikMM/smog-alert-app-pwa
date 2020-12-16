@@ -27,14 +27,10 @@ probes:
 ingress:
   enabled: true
   annotations: {}
-  path: /smog-alert-api
-  pathType: Prefix
-  hosts:
-    - localhost
-  tls: []
-    # - secretName: chart-example-tls
-    #   hosts:
-    #     - chart-example.local
+  paths:
+    - path: '/smog-alert-api'
+      type: Prefix
+  host: localhost
 secrets:
   Deployment:
     BasePath: /smog-alert-api

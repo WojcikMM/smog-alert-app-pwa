@@ -1,13 +1,7 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "smog-alert-api.fullname" . -}}
-{{- $servicePort := .Values.service.port -}}
-{{- $ingressPath := .Values.ingress.path -}}
-{{- $pathType := .Values.ingress.pathType -}}
-{{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+{{- $svcPort := .Values.service.port -}}
 apiVersion: networking.k8s.io/v1
-{{- else -}}
-apiVersion: networking.k8s.io/v1
-{{- end }}
 kind: Ingress
 metadata:
   name: {{ $fullName }}
@@ -18,30 +12,20 @@ metadata:
     heritage: {{ .Release.Service }}
 {{- with .Values.ingress.annotations }}
   annotations:
-{{ toYaml . | indent 4 }}
-{{- end }}
-spec:
-{{- if .Values.ingress.tls }}
-  tls:
-  {{- range .Values.ingress.tls }}
-    - hosts:
-      {{- range .hosts }}
-        - {{ . }}
-      {{- end }}
-      secretName: {{ .secretName }}
+    {{- toYaml . | nindent 4 }}
   {{- end }}
-{{- end }}
+spec:
   rules:
-  {{- range .Values.ingress.hosts }}
-    - host: {{ . }}
+    - host: {{ .Values.ingress.host }}
       http:
         paths:
-          - path: {{ $ingressPath }}
-            pathType: {{ $pathType }}
+        {{- range .Values.ingress.paths }}
+          - path: {{ .path }}
+            pathType: {{ .type }}
             backend:
               service:
                 name: {{ $fullName }}
                 port:
-                  number: {{ $servicePort }}
-  {{- end }}
+                  number: {{ $svcPort }}
+        {{- end }}
 {{- end }}
