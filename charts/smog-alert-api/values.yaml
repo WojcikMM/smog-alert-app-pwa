@@ -6,7 +6,7 @@ replicaCount: 1
 image:
   repository: wojcikmm.azurecr.io/smog-alert-api
   tag: latest
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 imagePullSecrets: []
   # Optionally specify an array of imagePullSecrets.
   # Secrets must be manually created in the namespace.
@@ -28,7 +28,7 @@ ingress:
   enabled: true
   annotations: {}
   paths:
-    - path: '/smog-alert-api'
+    - path: /smog-alert-api
       type: Prefix
   host: localhost
 secrets:

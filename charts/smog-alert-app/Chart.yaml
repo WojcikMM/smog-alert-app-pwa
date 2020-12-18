@@ -1,4 +1,4 @@
-apiVersion: v2
+apiVersion: v1
 name: smog-alert-app
 description: A frontend app to serve data from POWIETRZE.GIOS.GOV.PL
 
