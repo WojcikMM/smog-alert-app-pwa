@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -26,7 +26,12 @@ import {LocationFilterComponent} from './components/location-filter/location-fil
 import {DetailsCardComponent} from './components/details-card/details-card.component';
 import {AirConditionLevelPipe} from './pipes/air-condition-level.pipe';
 import { AirIndexValueTextDescriptionComponent } from './components/air-index-value-text-description/air-index-value-text-description.component';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -53,6 +58,15 @@ import { AirIndexValueTextDescriptionComponent } from './components/air-index-va
     MatProgressBarModule,
     MatTableModule,
     MatProgressSpinnerModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'en-US',
+      useDefaultLang: true,
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (HttpLoaderFactory), // TODO: try just TranslateHttpLoader
+        deps: [HttpClient]
+      }
+    }),
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [

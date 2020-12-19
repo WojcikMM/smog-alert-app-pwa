@@ -1,9 +1,9 @@
 <mat-toolbar color="primary">
-  <div>Air Tracker</div>
+  <div>{{ 'toolbar.title' | translate }}</div>
 </mat-toolbar>
 
-<h2>Breathe clean air.</h2>
-<h3>Here you can check air quality at your nearest location.</h3>
+<h2>{{ 'app.title' | translate}}</h2>
+<h3>{{ 'app.subTitle' | translate }}</h3>
 
 <app-location-filter (locationSelectedEvent)="onLocationChanged($event)"></app-location-filter>
 
@@ -16,11 +16,14 @@
     </app-details-card>
 
     <ng-template #noData>
-      <div>No data for this location</div>
+      <div>{{ 'app.noData' | translate }}</div>
     </ng-template>
   </ng-container>
 </ng-container>
 
-<footer class="footer">© 2020 Copyright: <a href="https://www.github.com/wojcikmm">WojcikMM</a></footer>
+<footer class="footer">
+  <span>{{ 'app.footer' | translate }}</span>&nbsp;
+  <a href="https://www.github.com/wojcikmm">WojcikMM</a>
+</footer>
 
 

@@ -2,5 +2,31 @@
       [class.air-index-value-text-description--bad]="indexValue >= 1 && indexValue < 3"
       [class.air-index-value-text-description--warning]="indexValue >= 3 && indexValue < 5"
       [class.air-index-value-text-description--good]="indexValue >= 5">
+  <ng-container [ngSwitch]="indexValue">
+    <span *ngSwitchCase="AirIndexValueEnum.UNKNOWN">
+      {{ 'app.airIndexValueDescription.UNKNOWN' | translate }}
+    </span>
+    <span *ngSwitchCase="AirIndexValueEnum.VERY_GOOD">
+      {{ 'app.airIndexValueDescription.VERY_GOOD' | translate }}
+    </span>
+    <span *ngSwitchCase="AirIndexValueEnum.GOOD">
+      {{ 'app.airIndexValueDescription.GOOD' | translate }}
+    </span>
+    <span *ngSwitchCase="AirIndexValueEnum.MODERATE">
+      {{ 'app.airIndexValueDescription.MODERATE' | translate }}
+    </span>
+    <span *ngSwitchCase="AirIndexValueEnum.SUFFICIENT">
+      {{ 'app.airIndexValueDescription.SUFFICIENT' | translate }}
+    </span>
+    <span *ngSwitchCase="AirIndexValueEnum.BAD">
+      {{ 'app.airIndexValueDescription.BAD' | translate }}
+    </span>
+    <span *ngSwitchCase="AirIndexValueEnum.VERY_BAD">
+      {{ 'app.airIndexValueDescription.VERY_BAD' | translate }}
+    </span>
+    <span *ngSwitchDefault>
+      {{ 'app.airIndexValueDescription.NO_DATA' | translate }}
+    </span>
+  </ng-container>
     {{indexValue | airConditionLevel}}
 </span>

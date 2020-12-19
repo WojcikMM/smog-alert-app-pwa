@@ -10,4 +10,5 @@ export class AirIndexValueTextDescriptionComponent {
 
   @Input()
   indexValue: AirIndexValueEnum = AirIndexValueEnum.UNKNOWN;
+  AirIndexValueEnum = AirIndexValueEnum;
 }

@@ -1,0 +1,17 @@
+{
+  "toolbar": {
+    "title": "Air Tracker"
+  },
+  "app": {
+    "title": "Breathe clean air.",
+    "subTitle": "Here you can check air quality at your nearest location.",
+    "footer": "© 2020 Copyright:",
+    "noData": "No data for this location.",
+    "locationFilter": {
+      "label": "Select your nearest location:"
+    },
+    "airIndexValueDescription": {
+      "UNKNOWN": ""
+    }
+  }
+}

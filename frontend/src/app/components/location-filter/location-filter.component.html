@@ -1,5 +1,5 @@
 <mat-form-field appearance="outline">
-  <mat-label>Select your nearest location:</mat-label>
+  <mat-label>{{ 'app.locationFilter.label' | translate }}</mat-label>
 
   <input matInput placeholder="Pick one" [formControl]="searchControl" [matAutocomplete]="autocompleteRef" />
   <mat-icon (click)="onDropdownIconClicked()" matSuffix>arrow_drop_down</mat-icon>
