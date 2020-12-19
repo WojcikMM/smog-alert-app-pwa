@@ -5,7 +5,7 @@
    echo "Unknown parameter"
    exit 1;
  else
-  chartName=smog-alert-"$1";
+  chartName=air-tracker-"$1";
  fi
 
 # Setup chartVersion

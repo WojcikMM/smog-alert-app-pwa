@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "smog-alert-api.fullname" . }}
+  name: {{ template "air-tracker-api.fullname" . }}
   labels:
-    app: {{ template "smog-alert-api.name" . }}
-    chart: {{ template "smog-alert-api.chart" . }}
+    app: {{ template "air-tracker-api.name" . }}
+    chart: {{ template "air-tracker-api.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
@@ -15,5 +15,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: {{ template "smog-alert-api.name" . }}
+    app: {{ template "air-tracker-api.name" . }}
     release: {{ .Release.Name }}

@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "smog-alert-app.fullname" . }}
+  name: {{ include "air-tracker-app.fullname" . }}
   labels:
-    {{- include "smog-alert-app.labels" . | nindent 4 }}
+    {{- include "air-tracker-app.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "smog-alert-app.selectorLabels" . | nindent 6 }}
+      {{- include "air-tracker-app.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "smog-alert-app.selectorLabels" . | nindent 8 }}
+        {{- include "air-tracker-app.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -41,7 +41,7 @@ spec:
               - name: {{ $ref }}__{{ $key }}
                 valueFrom:
                   secretKeyRef:
-                    name: {{ template "smog-alert-app.fullname" $root }}-{{ $ref | lower }}
+                    name: {{ template "air-tracker-app.fullname" $root }}-{{ $ref | lower }}
                     key: {{ $key }}
               {{- end }}
               {{- end }}

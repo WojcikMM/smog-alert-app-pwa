@@ -1,10 +1,10 @@
-# Default values for smog-alert-api.
+# Default values for air-tracker-api.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-fullnameOverride: smog-alert-api
+fullnameOverride: air-tracker-api
 replicaCount: 1
 image:
-  repository: wojcikmm.azurecr.io/smog-alert-api
+  repository: wojcikmm.azurecr.io/air-tracker-api
   tag: latest
   pullPolicy: Always
 imagePullSecrets: []
@@ -28,12 +28,12 @@ ingress:
   enabled: true
   annotations: {}
   paths:
-    - path: /smog-alert-api
+    - path: /air-tracker-api
       type: Prefix
   host: localhost
 secrets:
   Deployment:
-    BasePath: /smog-alert-api
+    BasePath: /air-tracker-api
   RefreshCachePeriod:
     Stations: "600"
     AirIndexes: "120"

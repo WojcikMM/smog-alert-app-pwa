@@ -1,6 +1,6 @@
 {
-  "name": "smog-alert-app",
-  "short_name": "smog-alert-app",
+  "name": "air-tracker-app",
+  "short_name": "air-tracker-app",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",

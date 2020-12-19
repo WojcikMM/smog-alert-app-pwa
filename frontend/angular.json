@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "smog-alert-app": {
+    "air-tracker-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/smog-alert-app",
+            "outputPath": "dist/air-tracker-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,18 +72,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "smog-alert-app:build"
+            "browserTarget": "air-tracker-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "smog-alert-app:build:production"
+              "browserTarget": "air-tracker-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "smog-alert-app:build"
+            "browserTarget": "air-tracker-app:build"
           }
         },
         "test": {
@@ -122,18 +122,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "smog-alert-app:serve"
+            "devServerTarget": "air-tracker-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "smog-alert-app:serve:production"
+              "devServerTarget": "air-tracker-app:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "smog-alert-app",
+  "defaultProject": "air-tracker-app",
   "cli": {
     "analytics": false
   }

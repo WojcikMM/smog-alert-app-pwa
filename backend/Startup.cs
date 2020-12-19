@@ -72,7 +72,7 @@ namespace SmogAlertAPI
 
       app.UseSwaggerUI(c =>
       {
-        c.SwaggerEndpoint("swagger/v1/swagger.json", "Smog Alert API V1");
+        c.SwaggerEndpoint("swagger/v1/swagger.json", "Air tracker API V1");
         c.RoutePrefix = string.Empty;
       });
 
@@ -81,7 +81,7 @@ namespace SmogAlertAPI
         app.UseDeveloperExceptionPage();
       }
 
-     // app.UseHttpsRedirection();
+      app.UseHttpsRedirection();
 
       app.UseRouting();
 

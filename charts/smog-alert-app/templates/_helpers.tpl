@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "smog-alert-app.name" -}}
+{{- define "air-tracker-app.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "smog-alert-app.fullname" -}}
+{{- define "air-tracker-app.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,22 +26,22 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "smog-alert-app.chart" -}}
+{{- define "air-tracker-app.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "smog-alert-app.labels" -}}
-helm.sh/chart: {{ include "smog-alert-app.chart" . }}
-{{ include "smog-alert-app.selectorLabels" . }}
+{{- define "air-tracker-app.labels" -}}
+helm.sh/chart: {{ include "air-tracker-app.chart" . }}
+{{ include "air-tracker-app.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
-app: {{ template "smog-alert-app.name" . }}
-chart: {{ template "smog-alert-app.chart" . }}
+app: {{ template "air-tracker-app.name" . }}
+chart: {{ template "air-tracker-app.chart" . }}
 release: {{ .Release.Name }}
 heritage: {{ .Release.Service }}
 {{- end }}
@@ -49,7 +49,7 @@ heritage: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "smog-alert-app.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "smog-alert-app.name" . }}
+{{- define "air-tracker-app.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "air-tracker-app.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}

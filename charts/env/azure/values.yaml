@@ -1,2 +1,5 @@
 ingress:
   host: wojcikmm.westeurope.cloudapp.azure.com
+tls:
+  isProd: true
+  email: maupek93@gmail.com

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost/smog-alert-api/api'
+  apiUrl: 'http://localhost/air-tracker-api/api'
 };
 
 /*

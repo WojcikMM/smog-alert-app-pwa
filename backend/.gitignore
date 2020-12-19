@@ -2,6 +2,6 @@ bin
 obj
 .vs
 
-../charts/smog-alert-api-*.tgz
+../charts/air-tracker-api-*.tgz
 SmogAlertAPI.csproj.user
 

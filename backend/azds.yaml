@@ -4,7 +4,7 @@ build:
   context: .
   dockerfile: Dockerfile
 install:
-  chart: charts/smog-alert-api
+  chart: charts/air-tracker-api
   values:
   - values.dev.yaml?
   - secrets.dev.yaml?
@@ -20,17 +20,17 @@ install:
     #   - name: myRegistryKeySecretName
     replicaCount: 1
     image:
-      repository: smog-alert-api
+      repository: air-tracker-api
       tag: $(tag)
       pullPolicy: Never
     ingress:
       annotations:
         kubernetes.io/ingress.class: traefik-azds
       hosts:
-      # This expands to form the service's public URL: [space.s.][rootSpace.]smog-alert-api.<random suffix>.<region>.azds.io
-      # Customize the public URL by changing the 'smog-alert-api' text between the $(rootSpacePrefix) and $(hostSuffix) tokens
+      # This expands to form the service's public URL: [space.s.][rootSpace.]air-tracker-api.<random suffix>.<region>.azds.io
+      # Customize the public URL by changing the 'air-tracker-api' text between the $(rootSpacePrefix) and $(hostSuffix) tokens
       # For more information see https://aka.ms/devspaces/routing
-      - $(spacePrefix)$(rootSpacePrefix)smog-alert-api$(hostSuffix)
+      - $(spacePrefix)$(rootSpacePrefix)air-tracker-api$(hostSuffix)
 configurations:
   develop:
     build:

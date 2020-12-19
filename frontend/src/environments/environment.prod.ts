@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://wojcikmm.westeurope.cloudapp.azure.com/smog-alert-api/api'
+  apiUrl: 'https://wojcikmm.westeurope.cloudapp.azure.com/air-tracker-api/api'
 };

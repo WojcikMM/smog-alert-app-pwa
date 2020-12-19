@@ -1,13 +1,13 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "smog-alert-api.fullname" . -}}
+{{- $fullName := include "air-tracker-api.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    app: {{ template "smog-alert-api.name" . }}
-    chart: {{ template "smog-alert-api.chart" . }}
+    app: {{ template "air-tracker-api.name" . }}
+    chart: {{ template "air-tracker-api.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 {{- with .Values.ingress.annotations }}
