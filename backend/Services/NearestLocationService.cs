@@ -1,9 +1,9 @@
-using SmogAlertAPI.Dto.External;
+using AirTrackerAPI.Dto.External;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SmogAlertAPI.Services
+namespace AirTrackerAPI.Services
 {
   public class NearestLocationService
   {

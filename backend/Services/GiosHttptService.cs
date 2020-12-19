@@ -1,12 +1,12 @@
 using Newtonsoft.Json;
-using SmogAlertAPI.Dto;
-using SmogAlertAPI.Dto.External;
+using AirTrackerAPI.Dto;
+using AirTrackerAPI.Dto.External;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace SmogAlertAPI.Services
+namespace AirTrackerAPI.Services
 {
   public class GiosHttptService : IAirQualityHttpClient
   {

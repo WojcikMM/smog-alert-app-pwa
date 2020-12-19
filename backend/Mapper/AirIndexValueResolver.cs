@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using SmogAlertAPI.Dto;
-using SmogAlertAPI.Dto.External;
+using AirTrackerAPI.Dto;
+using AirTrackerAPI.Dto.External;
 
-namespace SmogAlertAPI.Mapper
+namespace AirTrackerAPI.Mapper
 {
   public class AirIndexValueResolver : IValueResolver<ExternalAirIndexDto, AirIndexDto, AirIndexLevel>
   {

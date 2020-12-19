@@ -1,8 +1,8 @@
-using SmogAlertAPI.Dto.External;
+using AirTrackerAPI.Dto.External;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SmogAlertAPI.Services
+namespace AirTrackerAPI.Services
 {
   public interface IAirQualityHttpClient
   {

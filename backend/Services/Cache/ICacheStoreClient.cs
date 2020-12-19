@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace SmogAlertAPI.Services.Cache
+namespace AirTrackerAPI.Services.Cache
 {
   public interface ICacheStoreClient<T> where T: class
   {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SmogAlertAPI.Dto
+namespace AirTrackerAPI.Dto
 {
   public class AirIndexLevel
   {

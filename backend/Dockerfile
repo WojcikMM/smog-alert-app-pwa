@@ -7,16 +7,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["SmogAlertAPI.csproj", ""]
-RUN dotnet restore "./SmogAlertAPI.csproj"
+COPY ["AirTrackerAPI.csproj", ""]
+RUN dotnet restore "./AirTrackerAPI.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "SmogAlertAPI.csproj" -c Release -o /app/build
+RUN dotnet build "AirTrackerAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "SmogAlertAPI.csproj" -c Release -o /app/publish
+RUN dotnet publish "AirTrackerAPI.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "SmogAlertAPI.dll"]
+ENTRYPOINT ["dotnet", "AirTrackerAPI.dll"]

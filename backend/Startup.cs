@@ -3,15 +3,15 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SmogAlertAPI.Services;
-using SmogAlertAPI.Services.Cache;
-using SmogAlertAPI.Services.Jobs;
+using AirTrackerAPI.Services;
+using AirTrackerAPI.Services.Cache;
+using AirTrackerAPI.Services.Jobs;
 using AutoMapper;
 using System.Reflection;
-using SmogAlertAPI.Dto.External;
+using AirTrackerAPI.Dto.External;
 using Microsoft.Extensions.Logging;
 
-namespace SmogAlertAPI
+namespace AirTrackerAPI
 {
   public class Startup
   {

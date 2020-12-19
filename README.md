@@ -1,4 +1,4 @@
-# SmogAlertApp
+# AirTrackerApp
 
 This app is created for inform about the nearest air quality.  
 All data in this app are imported from [powietrze.gios.gov.pl](https://www.powietrze.gios.gov.pl).

@@ -1,4 +1,4 @@
-namespace SmogAlertAPI.Services
+namespace AirTrackerAPI.Services
 {
   public class Position
   {

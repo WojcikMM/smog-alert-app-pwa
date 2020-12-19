@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "SmogAlertAPI": {
+    "AirTrackerAPI": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "",

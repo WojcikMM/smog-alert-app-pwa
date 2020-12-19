@@ -1,4 +1,4 @@
-﻿namespace SmogAlertAPI.Mapper
+﻿namespace AirTrackerAPI.Mapper
 {
   public enum AirIndexType
   {

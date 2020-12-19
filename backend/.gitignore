@@ -3,5 +3,5 @@ obj
 .vs
 
 ../charts/air-tracker-api-*.tgz
-SmogAlertAPI.csproj.user
+AirTrackerAPI.csproj.user
 

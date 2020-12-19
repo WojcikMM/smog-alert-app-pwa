@@ -1,6 +1,6 @@
 using System;
 
-namespace SmogAlertAPI.Dto.External
+namespace AirTrackerAPI.Dto.External
 {
   public class ExternalAirIndexDto
   {

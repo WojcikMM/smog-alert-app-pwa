@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using SmogAlertAPI.Dto.External;
-using SmogAlertAPI.Services.Cache;
+using AirTrackerAPI.Dto.External;
+using AirTrackerAPI.Services.Cache;
 
-namespace SmogAlertAPI.Services.Jobs
+namespace AirTrackerAPI.Services.Jobs
 {
 
   public class RefreshGiosRestDataJob : IHostedService, IDisposable

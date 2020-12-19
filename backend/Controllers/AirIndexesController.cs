@@ -1,11 +1,11 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using SmogAlertAPI.Dto;
-using SmogAlertAPI.Dto.External;
-using SmogAlertAPI.Services.Cache;
+using AirTrackerAPI.Dto;
+using AirTrackerAPI.Dto.External;
+using AirTrackerAPI.Services.Cache;
 using System.Collections.Generic;
 
-namespace SmogAlertAPI.Controllers
+namespace AirTrackerAPI.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]

@@ -1,4 +1,4 @@
-namespace SmogAlertAPI.Dto
+namespace AirTrackerAPI.Dto
 {
   public class StationDto
   {
