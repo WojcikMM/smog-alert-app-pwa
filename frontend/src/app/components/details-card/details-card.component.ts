@@ -1,6 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {AirIndexDto} from '../../models/dtos/air-index.dto';
-import {StationDto} from '../../models/dtos/station.dto';
 import {AirIndexLevelDto} from '../../models/dtos/air-index-level.dto';
 
 
@@ -15,9 +14,6 @@ export interface AirIndexTableData extends AirIndexLevelDto {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DetailsCardComponent {
-
-  @Input()
-  selectedLocation?: StationDto | null;
 
   @Input()
   get airIndex(): AirIndexDto | undefined {

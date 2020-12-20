@@ -10,5 +10,7 @@ export class AirIndexValueTextDescriptionComponent {
 
   @Input()
   indexValue: AirIndexValueEnum = AirIndexValueEnum.UNKNOWN;
+  @Input()
+  useColors = true;
   AirIndexValueEnum = AirIndexValueEnum;
 }

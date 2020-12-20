@@ -1,54 +1,70 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, Output} from '@angular/core';
 import {AirConditionClientService} from '../../services/air-condition-client.service';
 import {StationDto} from '../../models/dtos/station.dto';
 import {FormControl} from '@angular/forms';
+import {Subject} from 'rxjs';
+import {first, takeUntil, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-location-filter',
   templateUrl: './location-filter.component.html',
   styleUrls: ['./location-filter.component.scss']
 })
-export class LocationFilterComponent {
+export class LocationFilterComponent implements OnDestroy {
 
-  allLocations: StationDto[] = [];
   locations: StationDto[] = [];
   searchControl: FormControl;
 
   @Output()
   readonly locationSelectedEvent: EventEmitter<StationDto> = new EventEmitter<StationDto>();
 
+  private allLocations: StationDto[] = [];
+  private readonly _subscriptionDestroyer: Subject<void> = new Subject();
+
   constructor(private airConditionClientService: AirConditionClientService) {
     this.searchControl = new FormControl('');
     airConditionClientService.stations$()
+      .pipe(
+        first(),
+        takeUntil(this._subscriptionDestroyer)
+      )
       .subscribe(result => {
         this.allLocations = result;
         this.locations = result;
       });
 
-    airConditionClientService.getNearestStation$().subscribe((station) => {
-      this.searchControl.setValue(station.name);
-      this.onOptionSelected(station.name);
-    });
+    airConditionClientService.getNearestStation$()
+      .pipe(takeUntil(this._subscriptionDestroyer))
+      .subscribe(station => {
+        this.searchControl.setValue(station);
+      });
 
-    this.searchControl.valueChanges.subscribe(value => {
-      const lowerValue = value?.toLowerCase() || '';
-      this.locations = !value ?
-        this.allLocations.slice() :
-        [...this.allLocations.filter(location => location.name.toLowerCase().indexOf(lowerValue) > -1)];
-    });
+    this.searchControl.valueChanges
+      .pipe(
+        tap(val => this._handleFilter(val)),
+        takeUntil(this._subscriptionDestroyer)
+      )
+      .subscribe();
   }
 
-  onOptionSelected(stationName: string): void {
-    const selectedStation = this.locations.find(x => x.name === stationName);
-    this.locationSelectedEvent.emit(selectedStation);
+  ngOnDestroy(): void {
+    this._subscriptionDestroyer.next();
+    this._subscriptionDestroyer.complete();
   }
 
-  onResetClicked(): void {
-    this.searchControl.setValue('');
-    this.locationSelectedEvent.emit();
+  displayWithFn(station: StationDto): string {
+    return station?.name || '';
   }
 
-  onDropdownIconClicked(): void {
-    this.searchControl.reset();
+  private _handleFilter(searchValue: StationDto | string): void {
+    if (!searchValue || typeof searchValue === 'string') {
+      const lowerValue = searchValue.toLowerCase();
+      this.locations = this.allLocations
+        .filter(location => location.name.toLowerCase().indexOf(lowerValue) > -1)
+        .slice();
+    } else {
+      this.locations = this.allLocations.slice();
+      this.locationSelectedEvent.emit(searchValue);
+    }
   }
 }

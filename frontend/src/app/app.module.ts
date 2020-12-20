@@ -24,10 +24,13 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {LocationFilterComponent} from './components/location-filter/location-filter.component';
 import {DetailsCardComponent} from './components/details-card/details-card.component';
-import {AirConditionLevelPipe} from './pipes/air-condition-level.pipe';
 import { AirIndexValueTextDescriptionComponent } from './components/air-index-value-text-description/air-index-value-text-description.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LanguageMenuComponent } from './components/language-menu/language-menu.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { SettingsViewComponent } from './views/settings-view/settings-view.component';
+import { MainViewComponent } from './views/main-view/main-view.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -38,37 +41,40 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     AppComponent,
     LocationFilterComponent,
     DetailsCardComponent,
-    AirConditionLevelPipe,
-    AirIndexValueTextDescriptionComponent
+    AirIndexValueTextDescriptionComponent,
+    LanguageMenuComponent,
+    SettingsViewComponent,
+    MainViewComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    MatSelectModule,
-    MatCardModule,
-    MatInputModule,
-    MatAutocompleteModule,
-    MatExpansionModule,
-    MatProgressBarModule,
-    MatTableModule,
-    MatProgressSpinnerModule,
-    TranslateModule.forRoot({
-      defaultLanguage: 'en-US',
-      useDefaultLang: true,
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (HttpLoaderFactory), // TODO: try just TranslateHttpLoader
-        deps: [HttpClient]
-      }
-    }),
-    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatIconModule,
+        MatToolbarModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        MatSelectModule,
+        MatCardModule,
+        MatInputModule,
+        MatAutocompleteModule,
+        MatExpansionModule,
+        MatProgressBarModule,
+        MatTableModule,
+        MatProgressSpinnerModule,
+        TranslateModule.forRoot({
+            defaultLanguage: 'en',
+            useDefaultLang: true,
+            loader: {
+                provide: TranslateLoader,
+                useFactory: (HttpLoaderFactory), // TODO: try just TranslateHttpLoader
+                deps: [HttpClient]
+            }
+        }),
+        ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+        MatMenuModule
+    ],
   providers: [
     {
       provide: POSITION_OPTIONS,

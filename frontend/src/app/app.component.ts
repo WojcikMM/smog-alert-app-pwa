@@ -1,9 +1,5 @@
 import {Component} from '@angular/core';
-import {Observable, ReplaySubject} from 'rxjs';
-import {distinctUntilChanged, filter, switchMap} from 'rxjs/operators';
-import {AirConditionClientService} from './services/air-condition-client.service';
-import {AirIndexDto} from './models/dtos/air-index.dto';
-import {StationDto} from './models/dtos/station.dto';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -12,22 +8,9 @@ import {StationDto} from './models/dtos/station.dto';
 })
 export class AppComponent {
 
-  selectedLocationAirIndex$: Observable<AirIndexDto>;
-  selectedLocation$: Observable<StationDto>;
-
-  private readonly selectedLocation = new ReplaySubject<StationDto>();
-
-  constructor(httpClientService: AirConditionClientService) {
-    this.selectedLocation$ = this.selectedLocation.asObservable().pipe(distinctUntilChanged());
-
-    this.selectedLocationAirIndex$ = this.selectedLocation$
-      .pipe(
-        filter(station => !!station?.id),
-        switchMap((station) => httpClientService.getAirConditionData$(station.id))
-      );
+  constructor(private readonly _translate: TranslateService) {
   }
-
-  onLocationChanged(station: StationDto): void {
-    this.selectedLocation.next(station);
+  onLanguageChanged(languageId: string): void {
+    this._translate.use(languageId);
   }
 }

@@ -1,0 +1,38 @@
+{
+  "language": {
+    "en": "Angielski",
+    "pl": "Polski"
+  },
+  "toolbar": {
+    "title": "Air Tracker"
+  },
+  "app": {
+    "title": "Odetchnij czystym powietrzem.",
+    "subTitle": "Tutaj możesz sprawdzić jakość powietrza w najbliższej lokalizacji.",
+    "footer": "© 2020 Copyright:",
+    "noData": "Brak danych dla tej lokalizacji.",
+    "locationFilter": {
+      "label": "Wybierz najbliższą lokalizację:"
+    },
+    "airIndexValueDescription": {
+      "UNKNOWN": "-",
+      "VERY_GOOD": "Bardzo dobre",
+      "GOOD": "Dobre",
+      "MODERATE": "Umiarkowane",
+      "SUFFICIENT": "Wystarczające",
+      "BAD": "Złe",
+      "VERY_BAD": "Bardzo złe",
+      "NO_DATA": "Brak danych"
+    },
+    "detailsCard": {
+      "cardTitle": "Jakość powietrza:",
+      "cardDetails": "Szczegóły",
+      "columns": {
+        "name": "Nazwa",
+        "valueDate": "Data pomiaru",
+        "rating": "Ocena"
+      },
+      "tableNoData": "-"
+    }
+  }
+}
