@@ -1,5 +1,8 @@
+image:
+  pullPolicy: Always
 ingress:
   host: wojcikmm.westeurope.cloudapp.azure.com
 tls:
+  enabled: true
   isProd: true
   email: maupek93@gmail.com

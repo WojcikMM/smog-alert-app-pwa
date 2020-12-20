@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: wojcikmm.azurecr.io/air-tracker-app
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "dev"
 
@@ -19,7 +19,7 @@ service:
   port: 80
 
 tls:
-  enabled: true
+  enabled: false
   isProd: false
   email: user@contoso.com
 
