@@ -32,8 +32,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import { SettingsViewComponent } from './views/settings-view/settings-view.component';
 import { MainViewComponent } from './views/main-view/main-view.component';
 
-export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
-  return new TranslateHttpLoader(http);
+export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
+  return new TranslateHttpLoader(http, environment.translationsPrefix);
 }
 
 @NgModule({

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost/air-tracker-api/api'
+  apiUrl: 'http://localhost/air-tracker-api/api',
+  translationsPrefix: './assets/i18n/',
 };
 
 /*
