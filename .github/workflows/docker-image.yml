@@ -20,15 +20,15 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Build the Docker image
-      run: docker build ./frontend --file ./frontend/Dockerfile --tag "$env:docker_repo"/"$:image_name":"$:image_tag"
+      run: docker build ./frontend --file ./frontend/Dockerfile --tag $docker_repo/$image_name:$image_tag
       
     - name: Login to docker
       env:
         DOCKER_PWD: ${{ secrets.DOCKER_PWD }}
-      run: docker login "$env:docker_repo" -u wojcikmm -p "$env:SUPER_SECRET"
+      run: docker login $docker_repo -u wojcikmm -p $SUPER_SECRET
       
     - name: Publish image
-      run: docker push "$env:docker_repo"/"$:image_name":"$:image_tag"
+      run: docker push $docker_repo/$image_name:$image_tag
     
     - name: Docker Logout
       run: docker logout
