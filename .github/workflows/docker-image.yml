@@ -1,0 +1,34 @@
+name: Build Frontend
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  docker_repo: 'wojcikmm.azurecr.io'
+  image_name: 'air-tracker-app'
+  image_tag: 'dev'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build the Docker image
+      run: docker build ./frontend --file ./frontend/Dockerfile --tag "$env:docker_repo"/"$:image_name":"$:image_tag"
+      
+    - name: Login to docker
+      env:
+        DOCKER_PWD: ${{ secrets.DOCKER_PWD }}
+      run: docker login "$env:docker_repo" -u wojcikmm -p "$env:SUPER_SECRET"
+      
+    - name: Publish image
+      run: docker push "$env:docker_repo"/"$:image_name":"$:image_tag"
+    
+    - name: Docker Logout
+      run: docker logout
