@@ -3,6 +3,8 @@ name: Build Frontend
 on:
   push:
     branches: [ master ]
+    paths:
+      - "frontend/**"
   pull_request:
     branches: [ master ]
 
@@ -13,9 +15,7 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     
@@ -24,6 +24,7 @@ jobs:
           docker login -u wojcikmm -p ${{ secrets.DOCKERHUB_PWD }}
           docker build ./frontend --file ./frontend/Dockerfile --tag $docker_repo/$image_name:$image_tag
           docker push $docker_repo/$image_name:$image_tag
+
     - name: Docker Logout
       run: docker logout
    
