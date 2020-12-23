@@ -18,22 +18,8 @@ jobs:
       uses: stefanprodan/helm-gh-pages@master
       with:
         token: ${{ secrets.GH_TOKEN }}
-        charts_dir: ./charts/air-tracker-app
-        target_dir: ./air-tracker-app
+        target_dir: ./air-tracker
         owner: wojcikmm
         repository: helm-repo
         branch: master
         commit_username: wojcikmm
-        
-    - name: Publish Backend Helm charts
-      uses: stefanprodan/helm-gh-pages@master
-      with:
-        token: ${{ secrets.GH_TOKEN }}
-        charts_dir: ./charts/air-tracker-api
-        target_dir: ./air-tracker-api
-        owner: wojcikmm
-        repository: helm-repo
-        branch: master
-        commit_username: wojcikmm     
-      
-   
