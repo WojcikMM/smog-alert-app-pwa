@@ -12,7 +12,6 @@ env:
   docker_repo: 'wojcikmm'
   image_name: 'air-tracker-api'
   image_tag: 'dev'
-  path: './backend'
 
 jobs:
   build-docker:
