@@ -23,7 +23,7 @@ jobs:
     - name: Build the Docker image
       run: |
           docker login -u wojcikmm -p ${{ secrets.DOCKERHUB_PWD }}
-          docker build $path --file ${{path}}/Dockerfile --tag $docker_repo/$image_name:$image_tag
+          docker build ./backend --file ./backend/Dockerfile --tag $docker_repo/$image_name:$image_tag
           docker push $docker_repo/$image_name:$image_tag
           docker logout
    
