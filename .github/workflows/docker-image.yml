@@ -21,7 +21,7 @@ jobs:
 
     - name: Build the Docker image
       run: |
-          docker login $docker_repo -u wojcikmm -p $secrets.SECRET_KEY
+          echo $secrets.SECRET_KEY | docker login $docker_repo -u wojcikmm --password-stdin
           docker build ./frontend --file ./frontend/Dockerfile --tag $docker_repo/$image_name:$image_tag
           docker push $docker_repo/$image_name:$image_tag
     - name: Docker Logout
