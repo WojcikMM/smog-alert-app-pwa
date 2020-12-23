@@ -1,7 +1,5 @@
 bin
 obj
 .vs
-
-../charts/air-tracker-api-*.tgz
 AirTrackerAPI.csproj.user
 
