@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 env:
-  docker_repo: 'wojcikmm.azurecr.io'
+  docker_repo: 'wojcikmm'
   image_name: 'air-tracker-app'
   image_tag: 'dev'
 
@@ -19,16 +19,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - name: ACR build
-      id: acr
-      uses: ams0/acr-task-github-action@v1
-      with:
-        service_principal: wojcikmm
-        service_principal_password: ${{ secrets.DOCKER_PWD }}
-        tenant: ${{ secrets.ACR_TENANT_ID }}
-        registry: wojcikmm
-        repository: $docker_repo
-        image: $image_name
-        #git_access_token: ${{ secrets.git_access_token }}
-        folder: ./frontend
-        dockerfile: ./frontend/Dockerfile
+    - name: Build the Docker image
+      run: |
+          docker login -u wojcikmm -p $secrets.DOCKERHUB_PWD
+          docker build ./frontend --file ./frontend/Dockerfile --tag $docker_repo/$image_name:$image_tag
+          docker push $docker_repo/$image_name:$image_tag
+    - name: Docker Logout
+      run: docker logout
+   
