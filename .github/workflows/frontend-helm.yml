@@ -17,7 +17,7 @@ jobs:
     - name: Publish Helm charts
       uses: stefanprodan/helm-gh-pages@master
       with:
-        token: ${{ secrets.helm_gh_pages_repo_token }}
+        token: ${{ secrets.GH_TOKEN }}
         #target_dir: .
         owner: wojcikmm
         repository: helm-repo
