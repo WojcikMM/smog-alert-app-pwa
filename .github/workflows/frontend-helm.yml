@@ -18,8 +18,9 @@ jobs:
       uses: stefanprodan/helm-gh-pages@master
       with:
         token: ${{ secrets.helm_gh_pages_repo_token }}
-        target_dir: ./air-tracker-app
+        #target_dir: .
         owner: wojcikmm
         repository: helm-repo
         branch: master
+        commit_username: wojcikmm
    
