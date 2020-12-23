@@ -7,12 +7,19 @@ on:
       - "charts/**"
   pull_request:
     branches: [ master ]
+  release:
+    types: [published, created, edited]
+env:
+  REF_VAR: github.ref  #refs/heads/<branch_name> || refs/tags/<tag_name>.
 
 jobs:
   build-helm:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    
+    - name: Set version of packages
+      run: echo $REF_VAR
 
     - name: Publish Frontend Helm charts
       uses: stefanprodan/helm-gh-pages@master
