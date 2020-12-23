@@ -25,7 +25,7 @@ jobs:
       with:
         service_principal: wojcikmm
         service_principal_password: ${{ secrets.DOCKER_PWD }}
-        tenant: ${{ secrets.tenant }}
+        tenant: ${{ secrets.ACR_TENANT_ID }}
         registry: wojcikmm
         repository: $docker_repo
         image: $image_name
