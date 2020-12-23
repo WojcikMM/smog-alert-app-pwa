@@ -1,0 +1,32 @@
+name: Build Frontend Helm Package
+
+on:
+  push:
+    branches: [ master ]
+    #paths:
+    #  - "charts/air-tracker-app/**"
+  pull_request:
+    branches: [ master ]
+
+env:
+  owner: 'wojcikmm'
+  helm_repo_name: 'helm-repo'
+  helm_repo_branch: 'master'
+  helm_repo_chart_dir: 'air-tracker-api'
+
+jobs:
+  build-helm:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Publish Helm charts
+      uses: stefanprodan/helm-gh-pages@master
+      with:
+        token: ${{ secrets.helm_gh_pages_repo_token }}
+        charts_dir: $helm_repo_chart_dir
+        charts_url: https://charts.fluxcd.io
+        owner: $owner
+        repository: $helm_repo_name
+        branch: $helm_repo_branch
+   
