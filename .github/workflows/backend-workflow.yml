@@ -1,0 +1,29 @@
+name: Build Backend
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - "backend/**"
+  pull_request:
+    branches: [ master ]
+
+env:
+  docker_repo: 'wojcikmm'
+  image_name: 'air-tracker-api'
+  image_tag: 'dev'
+  path: './backend'
+
+jobs:
+  build-docker:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Build the Docker image
+      run: |
+          docker login -u wojcikmm -p ${{ secrets.DOCKERHUB_PWD }}
+          docker build $path --file ${{path}}/Dockerfile --tag $docker_repo/$image_name:$image_tag
+          docker push $docker_repo/$image_name:$image_tag
+          docker logout
+   
