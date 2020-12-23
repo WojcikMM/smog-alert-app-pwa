@@ -4,7 +4,7 @@
 fullnameOverride: air-tracker-api
 replicaCount: 1
 image:
-  repository: wojcikmm.azurecr.io/air-tracker-api
+  repository: wojcikmm/air-tracker-api
   tag: latest
   pullPolicy: IfNotPresent
 imagePullSecrets: []

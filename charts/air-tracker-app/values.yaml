@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: wojcikmm.azurecr.io/air-tracker-app
+  repository: wojcikmm/air-tracker-app
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "dev"
