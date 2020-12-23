@@ -3,8 +3,8 @@ name: Publish Helm Release
 on:
   push:
     branches: [ master ]
-    #paths:
-    #  - "charts/air-tracker-app/**"
+    paths:
+      - "charts/**"
   pull_request:
     branches: [ master ]
 
