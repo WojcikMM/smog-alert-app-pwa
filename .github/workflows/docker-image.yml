@@ -18,10 +18,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Azure Container Registry Login
+      uses: Azure/docker-login@v1
+      with:
+        # Container registry username
+        username: 'wojcikmm'
+        # Container registry password
+        password: $secrets.DOCKER_PWD 
+        # Container registry server url
+        login-server: wojcikmm.azurecr.io
 
     - name: Build the Docker image
       run: |
-          echo $secrets.SECRET_KEY | docker login $docker_repo -u wojcikmm --password-stdin
+          docker login $docker_repo -u wojcikmm -p $secrets.DOCKER_PWD
           docker build ./frontend --file ./frontend/Dockerfile --tag $docker_repo/$image_name:$image_tag
           docker push $docker_repo/$image_name:$image_tag
     - name: Docker Logout
