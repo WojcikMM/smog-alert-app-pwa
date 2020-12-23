@@ -20,13 +20,9 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Build the Docker image
-      run: docker build ./frontend --file ./frontend/Dockerfile --tag $docker_repo/$image_name:$image_tag
-      
-    - name: Login to docker
-      run: docker login $docker_repo -u wojcikmm -p ${{ secrets.SECRET_KEY }}
-      
-    - name: Publish image
-      run: docker push $docker_repo/$image_name:$image_tag
-    
+      run: |
+          docker login $docker_repo -u wojcikmm -p $secrets.SECRET_KEY
+          docker build ./frontend --file ./frontend/Dockerfile --tag $docker_repo/$image_name:$image_tag
+          docker push $docker_repo/$image_name:$image_tag
     - name: Docker Logout
       run: docker logout
