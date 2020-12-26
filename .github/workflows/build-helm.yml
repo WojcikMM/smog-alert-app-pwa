@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    
+
     - name: Set version of packages
       run: echo $REF_VAR
 
@@ -25,7 +25,7 @@ jobs:
       uses: stefanprodan/helm-gh-pages@master
       with:
         token: ${{ secrets.GH_TOKEN }}
-        target_dir: ./air-tracker
+        target_dir: ./
         owner: wojcikmm
         repository: helm-repo
         branch: master

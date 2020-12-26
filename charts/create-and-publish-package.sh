@@ -42,7 +42,7 @@ if [ -z "$PRIVATE_HELM_REPO_PATH" ]; then
 fi
 
 # Copy chart to private helm repo
-cp ./"$packageTarName"  "$PRIVATE_HELM_REPO_PATH/$chartName/$packageTarName"
+cp ./"$packageTarName"  "$PRIVATE_HELM_REPO_PATH/$packageTarName"
 
 # Publish changes to private helm repo
 helm repo index "$PRIVATE_HELM_REPO_PATH"

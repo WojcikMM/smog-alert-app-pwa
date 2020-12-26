@@ -1,5 +1,6 @@
 image:
   pullPolicy: Always
+  tag: dev
 ingress:
   host: wojcikmm.westeurope.cloudapp.azure.com
 tls:
