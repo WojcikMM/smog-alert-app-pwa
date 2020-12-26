@@ -10,9 +10,11 @@
     "title": "Breathe clean air.",
     "subTitle": "Here you can check air quality at your nearest location.",
     "footer": "© 2020 Copyright:",
+    "footerDataInfo": "Data retrieved from:",
     "noData": "No data for this location.",
     "locationFilter": {
-      "label": "Select your nearest location:"
+      "label": "Select your nearest location:",
+      "followToggleLabel": "Track the nearest station"
     },
     "airIndexValueDescription": {
       "UNKNOWN": "-",
@@ -32,7 +34,8 @@
         "valueDate": "Date of measurement",
         "rating": "Rating"
       },
-      "tableNoData": "-"
+      "tableNoData": "-",
+      "tableNoDataTooltip": "There is no information about this parameter at this location."
     }
   }
 }

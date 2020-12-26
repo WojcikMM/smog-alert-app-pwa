@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 import {AirIndexDto} from '../models/dtos/air-index.dto';
 import {distinctUntilChanged, map, mergeMap, shareReplay} from 'rxjs/operators';
 import {GeolocationService} from '@ng-web-apis/geolocation';
+import {APP_CONSTS} from '../app.consts';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,9 @@ export class AirConditionClientService {
     return this.geolocation$.pipe(
       map(({coords}) => coords),
       distinctUntilChanged((prev: Coordinates, next: Coordinates) => {
-        return prev.latitude === next.latitude && prev.altitude === next.altitude;
+        const fractionDigitsIgnore = APP_CONSTS.GLOBALISATION.FRACTION_DIGITS_IGNORE;
+        return prev?.latitude.toFixed(fractionDigitsIgnore) === next.latitude?.toFixed(fractionDigitsIgnore) &&
+          prev.altitude?.toFixed(fractionDigitsIgnore) === next.altitude?.toFixed(fractionDigitsIgnore);
       }),
       mergeMap(coords => this.getNearestStationByPosition$(coords.longitude, coords.latitude))
     );

@@ -1,7 +1,8 @@
 <h2>{{ 'app.title' | translate}}</h2>
 <h3>{{ 'app.subTitle' | translate }}</h3>
 
-<app-location-filter (locationSelectedEvent)="onLocationChanged($event)">
+<app-location-filter [allStations]="allStations$ | async"
+                     (locationSelectedEvent)="onLocationChanged($event)">
 </app-location-filter>
 
 <ng-container *ngIf="selectedLocation$ | async as selectedLocation">

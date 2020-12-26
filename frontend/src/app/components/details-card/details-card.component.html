@@ -29,8 +29,24 @@
         <td mat-cell *matCellDef="let element">
               <span *ngIf="!element.indexDate">
                 {{ 'app.detailsCard.tableNoData' | translate }}
+                <button mat-icon-button
+                        color="primary"
+                        [matTooltip]="'app.detailsCard.tableNoDataTooltip' | translate"
+                        #matTooltip="matTooltip"
+                        (click)="matTooltip.toggle()">
+                  <mat-icon>help</mat-icon>
+                </button>
               </span>
-          <span *ngIf="element.indexDate">{{element.indexDate | date }}</span>
+          <span *ngIf="element.indexDate">
+            <ng-container *ngIf="langKey$ | async as langKey">
+              <span *ngIf="langKey=== 'pl'">
+                {{element.indexDate | date: 'dd-MM-YYYY' }}
+              </span>
+              <span *ngIf="langKey !== 'pl'">
+                {{element.indexDate | date: 'MM/dd/YYYY' }}
+              </span>
+            </ng-container>
+          </span>
         </td>
       </ng-container>
       <ng-container [matColumnDef]="displayedColumns[2]">

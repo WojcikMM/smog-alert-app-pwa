@@ -1,9 +1,10 @@
-import {Component, EventEmitter, OnDestroy, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, Output} from '@angular/core';
 import {AirConditionClientService} from '../../services/air-condition-client.service';
 import {StationDto} from '../../models/dtos/station.dto';
 import {FormControl} from '@angular/forms';
-import {Subject} from 'rxjs';
-import {first, takeUntil, tap} from 'rxjs/operators';
+import {Observable, of, Subject} from 'rxjs';
+import {map, switchMap, takeUntil, tap} from 'rxjs/operators';
+import {ConfigurationService} from '../../services/configuration.service';
 
 @Component({
   selector: 'app-location-filter',
@@ -11,40 +12,43 @@ import {first, takeUntil, tap} from 'rxjs/operators';
   styleUrls: ['./location-filter.component.scss']
 })
 export class LocationFilterComponent implements OnDestroy {
+  readonly searchControl: FormControl;
+  readonly filteredStations$: Observable<StationDto[]>;
 
-  locations: StationDto[] = [];
-  searchControl: FormControl;
+
+  @Input()
+  get allStations(): StationDto[] | null {
+    return this._allStations;
+  }
+
+  set allStations(val: StationDto[] | null) {
+    this._allStations = val || [];
+    this.searchControl.updateValueAndValidity();
+  }
 
   @Output()
   readonly locationSelectedEvent: EventEmitter<StationDto> = new EventEmitter<StationDto>();
 
-  private allLocations: StationDto[] = [];
+  private _allStations: StationDto[] = [];
   private readonly _subscriptionDestroyer: Subject<void> = new Subject();
 
-  constructor(private airConditionClientService: AirConditionClientService) {
+  constructor(private airConditionClientService: AirConditionClientService,
+              readonly configurationService: ConfigurationService) {
     this.searchControl = new FormControl('');
-    airConditionClientService.stations$()
-      .pipe(
-        first(),
-        takeUntil(this._subscriptionDestroyer)
-      )
-      .subscribe(result => {
-        this.allLocations = result;
-        this.locations = result;
-      });
 
-    airConditionClientService.getNearestStation$()
-      .pipe(takeUntil(this._subscriptionDestroyer))
-      .subscribe(station => {
-        this.searchControl.setValue(station);
-      });
+    this.filteredStations$ = this.searchControl.valueChanges
+      .pipe(map(val => this._handleFilter(val)));
 
-    this.searchControl.valueChanges
+    this.configurationService.useGeolocation$
       .pipe(
-        tap(val => this._handleFilter(val)),
+        switchMap(useGeolocation => useGeolocation ? airConditionClientService.getNearestStation$() : of(null)),
+        tap(station => {
+          if (!!station) {
+            this.searchControl.setValue(station);
+          }
+        }),
         takeUntil(this._subscriptionDestroyer)
-      )
-      .subscribe();
+      ).subscribe();
   }
 
   ngOnDestroy(): void {
@@ -56,15 +60,15 @@ export class LocationFilterComponent implements OnDestroy {
     return station?.name || '';
   }
 
-  private _handleFilter(searchValue: StationDto | string): void {
-    if (!searchValue || typeof searchValue === 'string') {
+  private _handleFilter(searchValue: StationDto | string): StationDto[] {
+    if (typeof searchValue === 'string') {
       const lowerValue = searchValue.toLowerCase();
-      this.locations = this.allLocations
+      return this._allStations
         .filter(location => location.name.toLowerCase().indexOf(lowerValue) > -1)
         .slice();
     } else {
-      this.locations = this.allLocations.slice();
       this.locationSelectedEvent.emit(searchValue);
+      return this._allStations.slice();
     }
   }
 }

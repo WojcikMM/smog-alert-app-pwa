@@ -1,6 +1,8 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {AirIndexDto} from '../../models/dtos/air-index.dto';
 import {AirIndexLevelDto} from '../../models/dtos/air-index-level.dto';
+import {ConfigurationService} from '../../services/configuration.service';
+import { Observable } from 'rxjs';
 
 
 export interface AirIndexTableData extends AirIndexLevelDto {
@@ -25,7 +27,12 @@ export class DetailsCardComponent {
     this.tableData = this._setupTableData(indexData);
   }
 
-  displayedColumns: string[] = ['indexName', 'indexDate', 'indexValue'];
+  constructor(configurationService: ConfigurationService) {
+   this.langKey$ = configurationService.languageKey$;
+  }
+
+  readonly langKey$: Observable<string>;
+  readonly displayedColumns: string[] = ['indexName', 'indexDate', 'indexValue'];
   tableData: AirIndexTableData[] = [];
 
   private _indexData?: AirIndexDto;

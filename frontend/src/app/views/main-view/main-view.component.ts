@@ -14,10 +14,12 @@ export class MainViewComponent {
 
   selectedLocationAirIndex$: Observable<AirIndexDto>;
   selectedLocation$: Observable<StationDto>;
+  allStations$: Observable<StationDto[]>;
 
   private readonly selectedLocation = new ReplaySubject<StationDto>();
 
   constructor(httpClientService: AirConditionClientService) {
+    this.allStations$ = httpClientService.stations$();
     this.selectedLocation$ = this.selectedLocation
       .asObservable()
       .pipe(distinctUntilChanged());

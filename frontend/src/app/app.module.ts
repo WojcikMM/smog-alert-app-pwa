@@ -31,9 +31,12 @@ import { LanguageMenuComponent } from './components/language-menu/language-menu.
 import {MatMenuModule} from '@angular/material/menu';
 import { SettingsViewComponent } from './views/settings-view/settings-view.component';
 import { MainViewComponent } from './views/main-view/main-view.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {APP_CONSTS} from './app.consts';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
-  return new TranslateHttpLoader(http, environment.translationsPrefix);
+  return new TranslateHttpLoader(http, APP_CONSTS.TRANSLATIONS_KEY_PREFIX);
 }
 
 @NgModule({
@@ -46,39 +49,41 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     SettingsViewComponent,
     MainViewComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatButtonModule,
-        MatIconModule,
-        MatToolbarModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        MatSelectModule,
-        MatCardModule,
-        MatInputModule,
-        MatAutocompleteModule,
-        MatExpansionModule,
-        MatProgressBarModule,
-        MatTableModule,
-        MatProgressSpinnerModule,
-        TranslateModule.forRoot({
-            defaultLanguage: 'en',
-            useDefaultLang: true,
-            loader: {
-                provide: TranslateLoader,
-                useFactory: (HttpLoaderFactory), // TODO: try just TranslateHttpLoader
-                deps: [HttpClient]
-            }
-        }),
-        ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-        MatMenuModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatToolbarModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatCardModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatExpansionModule,
+    MatProgressBarModule,
+    MatTableModule,
+    MatProgressSpinnerModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      useDefaultLang: true,
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (HttpLoaderFactory), // TODO: try just TranslateHttpLoader
+        deps: [HttpClient]
+      }
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    MatMenuModule,
+    MatSlideToggleModule,
+    MatTooltipModule
+  ],
   providers: [
     {
       provide: POSITION_OPTIONS,
-      useValue: {enableHighAccuracy: true, timeout: 3000, maximumAge: 1000},
+      useValue: {enableHighAccuracy: true, timeout: 3000, maximumAge: 30000},
     },
   ],
   bootstrap: [AppComponent]

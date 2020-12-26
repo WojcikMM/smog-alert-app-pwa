@@ -1,12 +1,23 @@
 <mat-form-field appearance="outline">
   <mat-label>{{ 'app.locationFilter.label' | translate }}</mat-label>
 
-  <input matInput placeholder="Pick one" [formControl]="searchControl" [matAutocomplete]="autocompleteRef" />
+  <input matInput placeholder="Pick one"
+         [formControl]="searchControl"
+         [matAutocomplete]="autocompleteRef"
+         [readonly]="configurationService.useGeolocation$ | async"/>
+
   <mat-icon matSuffix>arrow_drop_down</mat-icon>
   <mat-autocomplete autoActiveFirstOption
                     #autocompleteRef="matAutocomplete"
                     [displayWith]="displayWithFn">
     <mat-option *ngIf="!!searchControl.value">-</mat-option>
-    <mat-option *ngFor="let location of locations" [value]="location">{{location.name}}</mat-option>
+    <mat-option *ngFor="let location of filteredStations$ | async" [value]="location">{{location.name}}</mat-option>
   </mat-autocomplete>
+
 </mat-form-field>
+<mat-slide-toggle color="primary"
+                  [checked]="configurationService.useGeolocation$ | async"
+                  (change)="configurationService.setUseGeolocation($event.checked)">
+  {{ 'app.locationFilter.followToggleLabel' | translate}}
+</mat-slide-toggle>
+

@@ -10,9 +10,11 @@
     "title": "Odetchnij czystym powietrzem.",
     "subTitle": "Tutaj możesz sprawdzić jakość powietrza w najbliższej lokalizacji.",
     "footer": "© 2020 Copyright:",
+    "footerDataInfo": "Dane pobrano z:",
     "noData": "Brak danych dla tej lokalizacji.",
     "locationFilter": {
-      "label": "Wybierz najbliższą lokalizację:"
+      "label": "Wybierz najbliższą lokalizację:",
+      "followToggleLabel": "Śledź najbliższą stację"
     },
     "airIndexValueDescription": {
       "UNKNOWN": "-",
@@ -32,7 +34,8 @@
         "valueDate": "Data pomiaru",
         "rating": "Ocena"
       },
-      "tableNoData": "-"
+      "tableNoData": "-",
+      "tableNoDataTooltip": "Brak informacji o tym parametrze w tej lokalizacji."
     }
   }
 }
