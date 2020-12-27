@@ -10,16 +10,19 @@ import {ConfigurationModel} from '../models/configuration.model';
 })
 export class ConfigurationService {
   private readonly _config = new BehaviorSubject<ConfigurationModel>({
-    turnGeolocation: localStorage.getItem(APP_CONSTS.LOCAL_STORAGE_KEYS.TURN_GEOLOCATION) === 'true',
-    language: localStorage.getItem(APP_CONSTS.LOCAL_STORAGE_KEYS.LANGUAGE) || 'pl'
+    turnGeolocation: localStorage.getItem(APP_CONSTS.LOCAL_STORAGE_KEYS.TURN_GEOLOCATION) !== 'false',
+    language: localStorage.getItem(APP_CONSTS.LOCAL_STORAGE_KEYS.LANGUAGE) || APP_CONSTS.SETTINGS_DEFAULTS.LANGUAGE_KEY,
+    refreshRate: +(localStorage.getItem(APP_CONSTS.LOCAL_STORAGE_KEYS.REFRESH_RATE) || APP_CONSTS.SETTINGS_DEFAULTS.REFRESH_RATE)
   });
 
   readonly languageKey$: Observable<string>;
   readonly useGeolocation$: Observable<boolean>;
+  readonly refreshRate$: Observable<number>;
 
   constructor() {
     this.languageKey$ = this._config.pipe(map(({language}) => language));
     this.useGeolocation$ = this._config.pipe(map(({turnGeolocation}) => turnGeolocation));
+    this.refreshRate$ = this._config.pipe(map(({refreshRate}) => refreshRate));
   }
 
   setUseGeolocation(useGeolocationValue: boolean): void {
@@ -36,5 +39,17 @@ export class ConfigurationService {
       language: langKey
     });
     localStorage.setItem(APP_CONSTS.LOCAL_STORAGE_KEYS.LANGUAGE, langKey);
+  }
+
+  setRefreshRate(minutes: number): void {
+    this._config.next({
+      ...this._config.value,
+      refreshRate: minutes
+    });
+    localStorage.setItem(APP_CONSTS.LOCAL_STORAGE_KEYS.REFRESH_RATE, `${minutes}`);
+  }
+
+  getSnapshot(): ConfigurationModel{
+    return this._config.value;
   }
 }

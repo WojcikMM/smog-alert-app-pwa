@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import {StationDto} from '../../models/dtos/station.dto';
 import {AirIndexDto} from '../../models/dtos/air-index.dto';
-import {Observable, ReplaySubject} from 'rxjs';
+import {Observable, ReplaySubject, timer} from 'rxjs';
 import {AirConditionClientService} from '../../services/air-condition-client.service';
-import {distinctUntilChanged, filter, switchMap} from 'rxjs/operators';
+import {distinctUntilChanged, distinctUntilKeyChanged, filter, mergeMap, switchMap, withLatestFrom} from 'rxjs/operators';
+import {ConfigurationService} from '../../services/configuration.service';
 
 @Component({
   selector: 'app-main-view',
@@ -18,7 +19,8 @@ export class MainViewComponent {
 
   private readonly selectedLocation = new ReplaySubject<StationDto>();
 
-  constructor(httpClientService: AirConditionClientService) {
+  constructor(httpClientService: AirConditionClientService,
+              _configurationService: ConfigurationService) {
     this.allStations$ = httpClientService.stations$();
     this.selectedLocation$ = this.selectedLocation
       .asObservable()
@@ -26,8 +28,15 @@ export class MainViewComponent {
 
     this.selectedLocationAirIndex$ = this.selectedLocation$
       .pipe(
+        distinctUntilKeyChanged('id'),
         filter(station => !!station?.id),
-        switchMap((station) => httpClientService.getAirConditionData$(station.id))
+        withLatestFrom(_configurationService.refreshRate$),
+        switchMap(([station, refreshRate]) =>
+          timer( refreshRate * 60000)
+            .pipe(
+              mergeMap(() => httpClientService.getAirConditionData$(station.id)),
+            )
+        )
       );
   }
 

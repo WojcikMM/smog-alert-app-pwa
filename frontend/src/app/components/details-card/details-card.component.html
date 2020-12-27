@@ -20,33 +20,37 @@
         <th mat-header-cell *matHeaderCellDef>
           {{ 'app.detailsCard.columns.name' | translate }}
         </th>
-        <td mat-cell *matCellDef="let element">{{element.indexName}}</td>
+        <td mat-cell *matCellDef="let element">
+          <span [innerHTML]="'app.detailsCard.chemicalElements.' + element.indexName | translate"></span>
+
+        </td>
       </ng-container>
       <ng-container [matColumnDef]="displayedColumns[1]">
         <th mat-header-cell *matHeaderCellDef>
           {{ 'app.detailsCard.columns.valueDate' | translate }}
         </th>
         <td mat-cell *matCellDef="let element">
-              <span *ngIf="!element.indexDate">
-                {{ 'app.detailsCard.tableNoData' | translate }}
-                <button mat-icon-button
-                        color="primary"
-                        [matTooltip]="'app.detailsCard.tableNoDataTooltip' | translate"
-                        #matTooltip="matTooltip"
-                        (click)="matTooltip.toggle()">
-                  <mat-icon>help</mat-icon>
-                </button>
-              </span>
-          <span *ngIf="element.indexDate">
-            <ng-container *ngIf="langKey$ | async as langKey">
+          <ng-container *ngIf="!element.indexDate else indexDateTemplate">
+            <div>{{ 'app.detailsCard.tableNoData' | translate }}</div>
+            <button mat-icon-button
+                    color="primary"
+                    [matTooltip]="'app.detailsCard.tableNoDataTooltip' | translate"
+                    #matTooltip="matTooltip"
+                    (click)="matTooltip.toggle()">
+              <mat-icon>help</mat-icon>
+            </button>
+          </ng-container>
+          <ng-template #indexDateTemplate>
+            <div *ngIf="langKey$ | async as langKey">
               <span *ngIf="langKey=== 'pl'">
                 {{element.indexDate | date: 'dd-MM-YYYY' }}
               </span>
               <span *ngIf="langKey !== 'pl'">
                 {{element.indexDate | date: 'MM/dd/YYYY' }}
               </span>
-            </ng-container>
-          </span>
+            </div>
+            <div>{{element.indexDate | date: 'HH:mm' }}</div>
+          </ng-template>
         </td>
       </ng-container>
       <ng-container [matColumnDef]="displayedColumns[2]">

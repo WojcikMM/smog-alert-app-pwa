@@ -1,3 +1,18 @@
 mat-slide-toggle {
   margin-left: 1em;
 }
+
+.mat-form-field.mat-form-field-disabled {
+  input {
+    color: rgba(0,0,0,.38);
+  }
+
+  ::ng-deep {
+    .mat-form-field-suffix {
+      mat-icon {
+        display: none;
+      }
+    }
+  }
+
+}

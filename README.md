@@ -19,11 +19,9 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 ### TODO:
 - [ ] Support 100% PWA app.
-- [ ] Add settings page
-  ( where user can decide about enable or disable functions like watch location or push notifications)
-- [ ] Handle settings page options
 - [ ] Add information about [scale and marks](https://powietrze.gios.gov.pl/pjp/content/health_informations)
-- [ ] Correct display chemical elements
+- [ ] Add background fetching data ( with defined period of time in settings)
+- [ ] Add push notify when air quality value is ... ( defined in settings)
 
 
 ## Backend

@@ -39,13 +39,13 @@ export class DetailsCardComponent {
 
   private _setupTableData(airIndexData?: AirIndexDto): AirIndexTableData[] {
     return !!airIndexData ? [
-      {...airIndexData.co, indexName: 'co'},
-      {...airIndexData.benzene, indexName: 'benzene'},
-      {...airIndexData.nO2, indexName: 'no2'},
-      {...airIndexData.o3, indexName: 'o3'},
-      {...airIndexData.sO2, indexName: 'so2'},
-      {...airIndexData.pM10, indexName: 'pm 1.0'},
-      {...airIndexData.pM25, indexName: 'pm2.5'},
+      {...airIndexData.co, indexName: 'CO'},
+      {...airIndexData.benzene, indexName: 'BENZENE'},
+      {...airIndexData.nO2, indexName: 'NO2'},
+      {...airIndexData.o3, indexName: 'O3'},
+      {...airIndexData.sO2, indexName: 'SO2'},
+      {...airIndexData.pM10, indexName: 'PM10'},
+      {...airIndexData.pM25, indexName: 'PM25'},
     ] : [];
   }
 }

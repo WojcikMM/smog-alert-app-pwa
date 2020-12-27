@@ -3,10 +3,9 @@
   <div class="toolbar-separator"></div>
   <app-language-menu (languageChanged)="onLanguageChanged($event)">
   </app-language-menu>
-<!--  TODO: Uncomment when settings tab will be available-->
-<!--  <button mat-button routerLink="/settings">-->
-<!--    <mat-icon>settings</mat-icon>-->
-<!--  </button>-->
+  <button mat-button routerLink="/settings">
+    <mat-icon>settings</mat-icon>
+  </button>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

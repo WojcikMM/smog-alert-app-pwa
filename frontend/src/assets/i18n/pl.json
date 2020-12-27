@@ -13,8 +13,9 @@
     "footerDataInfo": "Dane pobrano z:",
     "noData": "Brak danych dla tej lokalizacji.",
     "locationFilter": {
-      "label": "Wybierz najbliższą lokalizację:",
-      "followToggleLabel": "Śledź najbliższą stację"
+      "label": "Wybierz stację",
+      "followToggleLabel": "Śledź najbliższą stację",
+      "placeholder": "Wybierz najbliższą stację"
     },
     "airIndexValueDescription": {
       "UNKNOWN": "-",
@@ -35,7 +36,32 @@
         "rating": "Ocena"
       },
       "tableNoData": "-",
-      "tableNoDataTooltip": "Brak informacji o tym parametrze w tej lokalizacji."
+      "tableNoDataTooltip": "Brak informacji o tym parametrze w tej lokalizacji.",
+      "chemicalElements": {
+        "CO": "CO",
+        "BENZENE": "Benzen",
+        "NO2": "NO<sub>2</sub>",
+        "O3": "O<sub>3</sub>",
+        "SO2": "SO<sub>2</sub>",
+        "PM10": "PM 10",
+        "PM25": "PM 2,5"
+      }
+    }
+  },
+  "settings": {
+    "title": "Ustawienia",
+    "goBackBtn": "Wstecz",
+    "submitBtn": "Zapisz",
+    "dataRefreshRate": {
+      "label": "Czas odświeżania danych",
+      "placeholder": "Określ czas odświeżania danych",
+      "hint": "Wartość „0” wyłącza automatyczne odświeżanie",
+      "suffix": "minut",
+      "errors": {
+        "required": "To pole jest wymagane.",
+        "min": "Nie można określić ujemnej wartości czasu.",
+        "max": "Maksymalna dozwolona wartość to 999."
+      }
     }
   }
 }

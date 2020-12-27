@@ -1,2 +1,42 @@
-<h2>Not Done Yet.</h2>
-<button mat-raised-button color="primary" routerLink="/">Go Back</button>
+<h2>{{ 'settings.title' | translate }}</h2>
+
+<form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+
+  <mat-form-field appearance="outline">
+    <mat-label>
+      {{ 'settings.dataRefreshRate.label' |translate }}
+    </mat-label>
+    <input matInput
+           name="refreshRate"
+           formControlName="refreshRate"
+           type="number"
+           [placeholder]="'settings.dataRefreshRate.placeholder' | translate">
+
+      <span matSuffix>{{ 'settings.dataRefreshRate.suffix' | translate }}</span>
+      <mat-hint> {{ 'settings.dataRefreshRate.hint' | translate }}</mat-hint>
+
+
+    <mat-error *ngIf="settingsForm.get('refreshRate')?.hasError('required')">
+      {{ 'settings.dataRefreshRate.errors.required' | translate }}
+    </mat-error>
+    <mat-error *ngIf="settingsForm.get('refreshRate')?.hasError('min')">
+      {{ 'settings.dataRefreshRate.errors.min' | translate }}
+    </mat-error>
+    <mat-error *ngIf="settingsForm.get('refreshRate')?.hasError('max')">
+      {{ 'settings.dataRefreshRate.errors.max' | translate }}
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-stroked-button
+          type="button"
+          class="back-button"
+          [routerLink]="mainRouteUrl">
+    {{ 'settings.goBackBtn' | translate }}
+  </button>
+  <button mat-raised-button
+          type="submit"
+          color="primary">
+    {{ 'settings.submitBtn' | translate }}
+  </button>
+
+</form>

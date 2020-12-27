@@ -13,8 +13,9 @@
     "footerDataInfo": "Data retrieved from:",
     "noData": "No data for this location.",
     "locationFilter": {
-      "label": "Select your nearest location:",
-      "followToggleLabel": "Track the nearest station"
+      "label": "Select station",
+      "followToggleLabel": "Track the nearest station",
+      "placeholder": "Select nearest station"
     },
     "airIndexValueDescription": {
       "UNKNOWN": "-",
@@ -35,7 +36,32 @@
         "rating": "Rating"
       },
       "tableNoData": "-",
-      "tableNoDataTooltip": "There is no information about this parameter at this location."
+      "tableNoDataTooltip": "There is no information about this parameter at this location.",
+      "chemicalElements": {
+        "CO": "CO",
+        "BENZENE": "Benzene",
+        "NO2": "NO<sub>2</sub>",
+        "O3": "O<sub>3</sub>",
+        "SO2": "SO<sub>2</sub>",
+        "PM10": "PM 10",
+        "PM25": "PM 2.5"
+      }
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "goBackBtn": "Go back",
+    "submitBtn": "Save",
+    "dataRefreshRate": {
+      "label": "Data refresh rate",
+      "placeholder": "Specify data refresh rate",
+      "hint": "A value of \"0\" disables auto-refresh",
+      "suffix": "minutes",
+      "errors": {
+        "required": "This field is required.",
+        "min": "Cannot specify negative time value.",
+        "max": "Max allowed value is 999."
+      }
     }
   }
 }

@@ -1,7 +1,8 @@
-<mat-form-field appearance="outline">
+<mat-form-field appearance="outline"
+                [class.mat-form-field-disabled]="configurationService.useGeolocation$ | async">
   <mat-label>{{ 'app.locationFilter.label' | translate }}</mat-label>
 
-  <input matInput placeholder="Pick one"
+  <input matInput [placeholder]="'app.locationFilter.placeholder' | translate "
          [formControl]="searchControl"
          [matAutocomplete]="autocompleteRef"
          [readonly]="configurationService.useGeolocation$ | async"/>
