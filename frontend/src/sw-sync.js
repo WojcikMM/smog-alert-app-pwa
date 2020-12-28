@@ -5,12 +5,6 @@ class AirIndexSyncWorker {
     this.registerServiceWorker();
   }
 
-  listenPeriodicSync() {
-    self.addEventListener('periodicsync', async event => {
-      console.log('periodic sync type:', event.type);
-    });
-  }
-
   registerServiceWorker() {
     if (navigator.serviceWorker) {
       navigator.serviceWorker.getRegistrations()
@@ -27,6 +21,10 @@ class AirIndexSyncWorker {
     }
   }
 }
+
+self.addEventListener('periodicsync', async event => {
+  console.log('periodic sync type:', event.type);
+});
 
 self.addEventListener('activate', () => {
   const sw = new AirIndexSyncWorker();
