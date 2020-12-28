@@ -24,13 +24,13 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {LocationFilterComponent} from './components/location-filter/location-filter.component';
 import {DetailsCardComponent} from './components/details-card/details-card.component';
-import { AirIndexValueTextDescriptionComponent } from './components/air-index-value-text-description/air-index-value-text-description.component';
+import {AirIndexValueTextDescriptionComponent} from './components/air-index-value-text-description/air-index-value-text-description.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { LanguageMenuComponent } from './components/language-menu/language-menu.component';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {LanguageMenuComponent} from './components/language-menu/language-menu.component';
 import {MatMenuModule} from '@angular/material/menu';
-import { SettingsViewComponent } from './views/settings-view/settings-view.component';
-import { MainViewComponent } from './views/main-view/main-view.component';
+import {SettingsViewComponent} from './views/settings-view/settings-view.component';
+import {MainViewComponent} from './views/main-view/main-view.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {APP_CONSTS} from './app.consts';
 import {MatTooltipModule} from '@angular/material/tooltip';
@@ -75,7 +75,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
         deps: [HttpClient]
       }
     }),
-    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    ServiceWorkerModule.register(environment.serviceWorkerName, {enabled: environment.production}),
     MatMenuModule,
     MatSlideToggleModule,
     MatTooltipModule

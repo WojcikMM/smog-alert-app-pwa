@@ -3,7 +3,9 @@
   <div class="toolbar-separator"></div>
   <app-language-menu (languageChanged)="onLanguageChanged($event)">
   </app-language-menu>
-  <button mat-button routerLink="/settings">
+  <button mat-button
+          routerLink="/settings"
+          aria-label="Redirect to settings">
     <mat-icon>settings</mat-icon>
   </button>
 </mat-toolbar>
