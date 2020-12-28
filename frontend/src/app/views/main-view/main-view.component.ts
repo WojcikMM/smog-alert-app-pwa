@@ -32,7 +32,7 @@ export class MainViewComponent {
         filter(station => !!station?.id),
         withLatestFrom(_configurationService.refreshRate$),
         switchMap(([station, refreshRate]) =>
-          timer( refreshRate * 60000)
+          timer(0,  refreshRate === 0 ? undefined : refreshRate * 100)
             .pipe(
               mergeMap(() => httpClientService.getAirConditionData$(station.id)),
             )

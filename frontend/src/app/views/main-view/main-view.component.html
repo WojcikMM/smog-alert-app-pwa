@@ -5,28 +5,22 @@
                      (locationSelectedEvent)="onLocationChanged($event)">
 </app-location-filter>
 
-<ng-container *ngIf="selectedLocation$ | async as selectedLocation">
+<mat-card *ngIf="selectedLocation$ | async as selectedLocation">
+  <mat-card-title>{{selectedLocation?.cityName}}</mat-card-title>
+  <mat-card-subtitle>{{selectedLocation?.addressStreet}}</mat-card-subtitle>
+  <mat-card-subtitle>{{selectedLocation?.provinceName}}</mat-card-subtitle>
 
-  <mat-card>
-    <mat-card-title>{{selectedLocation?.cityName}}</mat-card-title>
-    <mat-card-subtitle>{{selectedLocation?.addressStreet}}</mat-card-subtitle>
-    <mat-card-subtitle>{{selectedLocation?.provinceName}}</mat-card-subtitle>
+  <mat-card-content *ngIf="selectedLocationAirIndex$ | async as airIndex">
 
-    <mat-card-content>
-      <ng-container *ngIf="selectedLocationAirIndex$ | async as airIndex">
+    <app-details-card *ngIf="airIndex.summary.indexValue !== 0; else noData"
+                      [airIndex]="airIndex">
+    </app-details-card>
 
-        <app-details-card *ngIf="airIndex.summary.indexValue > 0; else noData"
-                          [airIndex]="airIndex">
-        </app-details-card>
-
-        <ng-template #noData>
-          <div>{{ 'app.noData' | translate }}</div>
-        </ng-template>
-      </ng-container>
-    </mat-card-content>
-  </mat-card>
-
-</ng-container>
+    <ng-template #noData>
+      <div>{{ 'app.noData' | translate }}</div>
+    </ng-template>
+  </mat-card-content>
+</mat-card>
 
 
 
