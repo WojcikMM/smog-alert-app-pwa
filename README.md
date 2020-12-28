@@ -20,7 +20,6 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ### TODO:
 - [ ] Support 100% PWA app.
 - [ ] Add information about [scale and marks](https://powietrze.gios.gov.pl/pjp/content/health_informations)
-- [ ] Add background fetching data ( with defined period of time in settings)
 - [ ] Add push notify when air quality value is ... ( defined in settings)
 
 

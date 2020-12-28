@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://wojcikmm.westeurope.cloudapp.azure.com/air-tracker-api/api',
-  serviceWorkerName: 'sw-sync.js'
+  apiUrl: 'https://wojcikmm.westeurope.cloudapp.azure.com/air-tracker-api/api'
 };
 
 /*

@@ -75,7 +75,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
         deps: [HttpClient]
       }
     }),
-    ServiceWorkerModule.register(environment.serviceWorkerName, {enabled: environment.production}),
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
     MatMenuModule,
     MatSlideToggleModule,
     MatTooltipModule
