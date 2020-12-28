@@ -28,6 +28,9 @@ class AirIndexSyncWorker {
   }
 }
 
+self.addEventListener('activate', () => {
+  const sw = new AirIndexSyncWorker();
+  sw.init();
+});
 
-const sw = new AirIndexSyncWorker();
-sw.init();
+
