@@ -1,7 +1,6 @@
 class AirIndexSyncWorker {
 
   init() {
-    this.listenPeriodicSync();
     this.registerServiceWorker();
   }
 
