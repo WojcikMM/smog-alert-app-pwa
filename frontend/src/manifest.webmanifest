@@ -6,6 +6,19 @@
   "display": "standalone",
   "scope": "./",
   "start_url": "./index.html",
+  "routing": {
+    "index":"./index.html",
+    "routes": {
+      "/": {
+        "match":"exact",
+        "prefix": false
+      },
+      "settings": {
+        "match": "exact",
+        "prefix": false
+      }
+    }
+  },
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",

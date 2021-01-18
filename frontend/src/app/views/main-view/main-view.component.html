@@ -12,7 +12,7 @@
 
   <mat-card-content *ngIf="selectedLocationAirIndex$ | async as airIndex">
 
-    <app-details-card *ngIf="airIndex.summary.indexValue !== 0; else noData"
+    <app-details-card *ngIf="airIndex.summary.indexValue !== -1; else noData"
                       [airIndex]="airIndex">
     </app-details-card>
 
